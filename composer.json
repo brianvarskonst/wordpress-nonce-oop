@@ -1,0 +1,43 @@
+{
+    "name": "brianvarskonst/wordpress-nonce-oop",
+    "description": "WordPress Nonce in an Object Oriented Way, this Package implements the WordPress Nonces functionality (wp_nonce_*()).",
+    "type": "library",
+    "license": "GPL2",
+    "keywords": [
+        "wordpress",
+        "wordpress-nonce",
+        "wordpress-security"
+    ],
+    "authors": [
+        {
+          "name": "Brian Schäffner",
+          "email": "brianvar.skonst@gmail.com",
+          "role":  "Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "support": {
+        "issues": "https://github.com/brianvarskonst/wordpress-nonce-oop/issues"
+    },
+    "require": {
+        "php": ">=7.2.0"
+    },
+    "require-dev": {
+        "brain/monkey": "~1.4",
+        "symfony/var-dumper": "^5.0@dev",
+        "phpunit/phpunit": "^8"
+    },
+    "autoload": {
+        "psr-4": {
+          "NoncesManager\\": "src/NoncesManager"
+        },
+        "classmap": [
+            "NonceTest.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "NoncesManager\\Tests\\": "tests/src/"
+        }
+    }
+}
