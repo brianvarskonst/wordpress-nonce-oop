@@ -44,19 +44,28 @@ $ vendor/bin/phpunit
 I have created a example plugin (`wp-nonce-test-plugin`) to use this nonce manager with an example implementation of `NonceTest.php Class`.
 
 ### The Configuration:
-WP Nonce need an action to find the current action which is secured by a nonce. The first parameter of the configuration defines this name. Usually forms or URLs passes the nonce. The second parameter is for request key. In this case, we would expect the nonce to be in `$_REQUEST['request_name']`.
+Wordpress Nonce need an action to find the current action which is secured by a nonce.
+Usually forms or Urls passes the nonce. 
+
+The first parameter of the configuration defines the action name of this nonce.  
+The second parameter is for request key. In this case, we would expect the nonce to be in `$_REQUEST['request_name']`.
+The third parameter is for the lifetime, defines the lifetime of the nonce, its expect an integer in seconds - this is optional, default value is 24 hours.
+
+Note: The time interval from an nonce is not an regular time interval, 1 tick is equal half a second, this is the reason why we double the lifetime, note that please.
 
 ```php
 use NoncesManager\Configuration;
 
 $configuration = new Configuration( 
 	'action', 
-	'request_name' 
+	'request_name',
+    30 
 );
 ```
 
-### Create an new NonceManager Instance
-Doctrine's public interface is through the EntityManager. This class provides access points to the complete lifecycle management for your entities, and transforms entities from and back to persistence. You have to configure and create it to use your entities with Doctrine 2. I will show the configuration steps and then discuss them step by step:
+### Create an new NonceManager
+The Nonce Manager has 2 dynamic init methods, you can inject dependencies by call the `NonceManager::create` method - or you can only pass the configuration by using `NonceManager::build`.
+
 
 ```php
 use NoncesManager\NonceManager;
