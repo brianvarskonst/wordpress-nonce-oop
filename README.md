@@ -47,9 +47,9 @@ I have created a example plugin (`wp-nonce-test-plugin`) to use this nonce manag
 Wordpress Nonce need an action to find the current action which is secured by a nonce.
 Usually forms or Urls passes the nonce. 
 
-The first parameter of the configuration defines the action name of this nonce.  
-The second parameter is for request key. In this case, we would expect the nonce to be in `$_REQUEST['request_name']`.
-The third parameter is for the lifetime, defines the lifetime of the nonce, its expect an integer in seconds - this is optional, default value is 24 hours.
+- The first parameter (`string: actionName`) of the configuration defines the action name of this nonce.  
+- The second parameter (`string: requestName`) is for request key. In this case, we would expect the nonce to be in `$_REQUEST['request_name']`.
+- The third parameter (`int: lifetime`) is for the lifetime, defines the lifetime of the nonce, its expect an integer in seconds - this is optional, default value is 24 hours.
 
 Note: The time interval from an nonce is not an regular time interval, 1 tick is equal half a second, this is the reason why we double the lifetime, note that please.
 
