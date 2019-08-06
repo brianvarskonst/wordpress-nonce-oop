@@ -41,7 +41,7 @@ $ vendor/bin/phpunit
 
 ## Usage
 ### Example
-I have created a example plugin (`wp-nonce-test-plugin`) to use this nonce manager with an example implementation of `NonceTest.php Class`.
+I have created a example plugin ([wp-nonce-test-plugin](https://github.com/brianvarskonst/wordpress-nonce-oop/blob/master/wp-nonce-test-plugin.php)) to use this nonce manager with an example implementation of [NonceTest](https://github.com/brianvarskonst/wordpress-nonce-oop/blob/master/NonceTest.php) Class`.
 
 ### The Configuration:
 Wordpress Nonce need an action to find the current action which is secured by a nonce.
@@ -149,6 +149,9 @@ $isAjaxReferer = $verifier->checkAjaxReferer();
 - Upgrade brain\monkey from ~1.4 to lastest Version 2
 - Make better test for wp_verify_nonce, check_admin_referer and check_ajax_referer in Verifier Class
 - Make better test for NonceAbstract Class
+
+## Ideas
+- Add more manager behavior, manage all nonces used in the current wordpress installation
 
 ## Credits
 * [Wordpress Nonces Documentation](https://codex.wordpress.org/WordPress_Nonces)
