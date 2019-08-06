@@ -130,7 +130,7 @@ class VerifierTest extends AbstractTestCase
      * Test check Admin Referer valid
      * TODO: Make better Test
      *
-     * @covers \NoncesManager\Nonces\Verification\Verifier::checkAdminReferer
+     * @covers \NoncesManager\Nonces\Verification\Verifier::isAdminReferer
      */
     public function testCheckAdminRefererValid(): void {
         $create = new Nonce($this->configuration);
@@ -143,7 +143,7 @@ class VerifierTest extends AbstractTestCase
             ->andReturn(true);
 
         $verify = new Verifier($this->configuration);
-        $valid = $verify->checkAdminReferer();
+        $valid = $verify->isAdminReferer();
 
         // Check if nonce is valid.
         self::assertTrue($valid);
@@ -153,7 +153,7 @@ class VerifierTest extends AbstractTestCase
      * Test check Admin Referer invalid
      * TODO: Make better Test
      *
-     * @covers \NoncesManager\Nonces\Verification\Verifier::checkAdminReferer
+     * @covers \NoncesManager\Nonces\Verification\Verifier::isAdminReferer
      */
     public function testCheckAdminRefererInvalid(): void {
         $create = new Nonce($this->configuration);
@@ -166,7 +166,7 @@ class VerifierTest extends AbstractTestCase
             ->andReturn(false);
 
         $verify = new Verifier($this->configuration);
-        $valid = $verify->checkAdminReferer();
+        $valid = $verify->isAdminReferer();
 
         // Check if nonce is invalid.
         self::assertFalse($valid);
@@ -176,7 +176,7 @@ class VerifierTest extends AbstractTestCase
      * Test check Ajax Referer valid
      * TODO: Make better Test
      *
-     * @covers \NoncesManager\Nonces\Verification\Verifier::checkAjaxReferer
+     * @covers \NoncesManager\Nonces\Verification\Verifier::isAjaxReferer
      */
     public function testCheckAjaxRefererValid(): void {
         $create = new Nonce($this->configuration);
@@ -189,7 +189,7 @@ class VerifierTest extends AbstractTestCase
             ->andReturn(true);
 
         $verify = new Verifier($this->configuration);
-        $valid = $verify->checkAjaxReferer();
+        $valid = $verify->isAjaxReferer();
 
         // Check if nonce is valid.
         self::assertTrue($valid);
@@ -199,7 +199,7 @@ class VerifierTest extends AbstractTestCase
      * Test check Ajax Referer valid
      * TODO: Make better Test
      *
-     * @covers \NoncesManager\Nonces\Verification\Verifier::checkAjaxReferer
+     * @covers \NoncesManager\Nonces\Verification\Verifier::isAjaxReferer
      */
     public function testCheckAjaxRefererInvalid(): void {
         $create = new Nonce($this->configuration);
@@ -212,7 +212,7 @@ class VerifierTest extends AbstractTestCase
             ->andReturn(false);
 
         $verify = new Verifier($this->configuration);
-        $valid = $verify->checkAjaxReferer();
+        $valid = $verify->isAjaxReferer();
 
         // Check if nonce is valid.
         self::assertFalse($valid);

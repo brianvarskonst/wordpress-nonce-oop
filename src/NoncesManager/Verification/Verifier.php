@@ -82,7 +82,7 @@ class Verifier extends NonceAbstract implements VerifierInterface
      *
      * @return bool     false if it's invalid or 1 or 2 if it's valid and returns true.
      */
-    public function checkAdminReferer(): bool
+    public function isAdminReferer(): bool
     {
         return (bool) check_admin_referer($this->getAction(), $this->getRequestName());
     }
@@ -103,7 +103,7 @@ class Verifier extends NonceAbstract implements VerifierInterface
      *
      * @return bool  false if it's invalid or 1 or 2 if it's valid and return true.
      */
-    public function checkAjaxReferer(bool $die = false): bool
+    public function isAjaxReferer(bool $die = false): bool
     {
         return (bool) check_ajax_referer($this->getAction(), $this->getRequestName(), $die );
     }
