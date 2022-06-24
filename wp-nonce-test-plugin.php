@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Plugin Name: Wordpress Nonce Test Plugin
  * Plugin URI: https://github.com/brianvarskonst/wordpress-nonce-oop
@@ -7,21 +9,16 @@
  * Version: 1.0.
  * Author: Brian Schäffner
  * Author URI: https://github.com/brianvarskonst
- * Requires at least: 5.2
- * Tested at: 5.2.2
+ * Requires at least: 6.0
+ * Tested at: 6.0
  *
  * Text Domain: wp-nonce-test
  */
 
-// Exit if accessed directly
-if (!defined('ABSPATH')) exit;
+if (!defined('ABSPATH')) {
+    die();
+}
 
-/**
- * Create Error Message Function
- *
- * @param string $message       The Message to handle
- * @param string $template      The Template format to handle
- */
 function createErrorMessage(string $message, string $template = '%s: ') {
     if (PHP_SAPI !== 'cli') {
         $template = '<h2>%s</h2>';
@@ -34,17 +31,14 @@ function createErrorMessage(string $message, string $template = '%s: ') {
     exit(1);
 }
 
-// Check the minimum required php version
-if (PHP_VERSION_ID < 70200) {
-    createErrorMessage('Auf Ihrem Server läuft PHP version ' . PHP_VERSION . ', Wordpress Nonce Test Plugin benötigt mindestens PHP 7.2.0');
-}
+$autoloader = __DIR__ . '/vendor/autoload.php';
 
 // Check if composer install was executed
-if (!file_exists(__DIR__ . '/vendor/autoload.php')) {
-    createErrorMessage('Bitte führen Sie zuerst "composer install" aus um alle von Wordpress Nonce Test Plugin benötigten Abhängigkeiten zu installieren.');
+if (!file_exists($autoloader) || !is_readable($autoloader)) {
+    createErrorMessage('Please run "composer install" before you are testing the Nonce Manager.');
 }
 
-require_once __DIR__ . '/vendor/autoload.php';
+require_once $autoloader;
 
 // Create a new NonceTest instance and test the NonceManager
 $nonceTest = new NonceTest();
