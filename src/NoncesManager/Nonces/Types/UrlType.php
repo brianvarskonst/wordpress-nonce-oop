@@ -4,65 +4,44 @@ declare(strict_types=1);
 
 namespace NoncesManager\Nonces\Types;
 
-use NoncesManager\Nonces\BaseNonce;
+use NoncesManager\Nonces\Nonce;
 
-/**
- * Class UrlType
- * Create Nonce Url
- *
- * @package NoncesManager\Nonces\Types
- */
-class UrlType extends Nonce implements NonceType
+class UrlType extends AbstractNonceType
 {
+    private string $url;
 
     /**
-     * The URL
-     *
-     * @access private
-     * @var string
-     **/
-    private $url = '';
+     * @param string $url The URL to append the Nonce.
+     */
+    public function __construct(Nonce $nonce, string $url)
+    {
+        $this->url = $url;
+
+        parent::__construct($nonce);
+    }
 
     /**
      * Generate a nonce request url
      *
      * @link https://developer.wordpress.org/reference/functions/wp_nonce_url
-     *
-     * @param string    $url    The URL to append the Nonce.
-     *
-     * @return string   $url    The generated nonce url
      **/
-    public function generate(string $url): string
+    public function generate(): string
     {
-        if (!$this->check()) {
-            $this->create();
+        if (!$this->nonce->check()) {
+            $this->nonce->create();
         }
 
-        $url = wp_nonce_url($url, $this->getAction(), $this->getRequestName());
+        $url = wp_nonce_url(
+            $this->url,
+            $this->nonce->getAction(),
+            $this->nonce->getRequestName()
+        );
 
-        $this->setUrl($url);
+        $this->url = $url;
 
-        return $this->getUrl();
+        return $url;
     }
 
-    /**
-     * Set the URL
-     * Don't expose this method, only set the url with the generate method
-     *
-     * @param string    $newUrl     The new URL.
-     *
-     * @return void
-     **/
-    protected function setUrl(string $newUrl): void
-    {
-        $this->url = $newUrl;
-    }
-
-    /**
-     * Get the URL
-     *
-     * @return string   $url    The URL
-     **/
     public function getUrl(): string
     {
         return $this->url;

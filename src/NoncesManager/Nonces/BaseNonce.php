@@ -16,10 +16,7 @@ class BaseNonce extends AbstractBaseNonce implements CreatableNonce
         );
     }
 
-    /**
-     * Check if Nonce is exists or not
-     */
-    protected function check(): bool
+    public function check(): bool
     {
         return !empty($this->getNonce());
     }
