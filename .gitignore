@@ -1,0 +1,6 @@
+###> composer/general ###
+# During development phase
+composer.lock
+# omit trailing slash to catch symlinks
+/vendor
+###< composer/general ###
