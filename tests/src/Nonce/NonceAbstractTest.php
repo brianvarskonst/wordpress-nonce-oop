@@ -8,7 +8,7 @@ use Brain\Monkey\Functions;
 use NoncesManager\Nonces\NonceAbstract;
 use NoncesManager\Tests\AbstractTestCase;
 
-use NoncesManager\Configuration;
+use NoncesManager\BaseConfiguration;
 use NoncesManager\Nonces\Nonce;
 
 class NonceAbstractTest extends AbstractTestCase
@@ -37,7 +37,7 @@ class NonceAbstractTest extends AbstractTestCase
     /**
      * The configuration.
      *
-     * @var Configuration
+     * @var BaseConfiguration
      **/
     public $configuration;
 
@@ -57,10 +57,10 @@ class NonceAbstractTest extends AbstractTestCase
         $this->action = 'action';
         $this->request = 'request';
         $this->lifetime = 213;
-        $this->configuration = new Configuration($this->action, $this->request, $this->lifetime);
+        $this->configuration = new BaseConfiguration($this->action, $this->request, $this->lifetime);
 
         // Get mock, without the constructor being called
-        $this->nonce = new Nonce($this->configuration);
+        $this->nonce = new BaseNonce($this->configuration);
     }
 
     /**

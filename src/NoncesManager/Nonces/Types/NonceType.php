@@ -9,5 +9,5 @@ namespace NoncesManager\Nonces\Types;
  *
  * @package NoncesManager\Nonces\Types
  */
-interface NonceTypeInterface
+interface NonceType
 {}

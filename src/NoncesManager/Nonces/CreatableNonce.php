@@ -1,15 +1,10 @@
 <?php
 
-
 namespace NoncesManager\Nonces;
 
-/**
- * Interface NonceInterface
- *
- * @package NoncesManager\Nonces
- */
-interface NonceInterface
+interface CreatableNonce
 {
+
     /**
      * Create a new nonce
      *

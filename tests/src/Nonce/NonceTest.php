@@ -8,7 +8,7 @@ use NoncesManager\Tests\AbstractTestCase;
 
 use Brain\Monkey\Functions;
 
-use NoncesManager\Configuration;
+use NoncesManager\BaseConfiguration;
 use NoncesManager\Nonces\Nonce;
 
 /**
@@ -61,7 +61,7 @@ class NonceTest extends AbstractTestCase
         $this->action = 'action';
         $this->request = 'request';
         $this->lifetime = 213;
-        $this->configuration = new Configuration($this->action, $this->request, $this->lifetime);
+        $this->configuration = new BaseConfiguration($this->action, $this->request, $this->lifetime);
     }
 
     /**

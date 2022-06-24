@@ -45,7 +45,7 @@ class UrlTypeTest extends AbstractTestCase
     /**
      * The configuration.
      *
-     * @var Configuration
+     * @var BaseConfiguration
      **/
     public $configuration;
 

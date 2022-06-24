@@ -8,7 +8,7 @@ use Brain\Monkey\Functions;
 use NoncesManager\Nonces\Types\UrlType;
 use NoncesManager\Tests\AbstractTestCase;
 
-use NoncesManager\Configuration;
+use NoncesManager\BaseConfiguration;
 use NoncesManager\Nonces\Types\FieldType;
 use NoncesManager\Tests\Utility\PHPUnitUtility;
 
@@ -44,7 +44,7 @@ class FieldTypeTest extends AbstractTestCase
     /**
      * The configuration.
      *
-     * @var Configuration
+     * @var BaseConfiguration
      **/
     public $configuration;
 

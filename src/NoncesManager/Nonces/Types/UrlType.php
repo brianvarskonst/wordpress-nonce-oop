@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace NoncesManager\Nonces\Types;
 
-use NoncesManager\Nonces\Nonce;
+use NoncesManager\Nonces\BaseNonce;
 
 /**
  * Class UrlType
@@ -12,7 +12,7 @@ use NoncesManager\Nonces\Nonce;
  *
  * @package NoncesManager\Nonces\Types
  */
-class UrlType extends Nonce implements NonceTypeInterface
+class UrlType extends Nonce implements NonceType
 {
 
     /**

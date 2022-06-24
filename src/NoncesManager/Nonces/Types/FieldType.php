@@ -6,13 +6,7 @@ namespace NoncesManager\Nonces\Types;
 
 use NoncesManager\Nonces\Nonce;
 
-/**
- * Class FieldType
- * Create Nonce Field
- *
- * @package NoncesManager\Nonces\Types
- */
-class FieldType extends Nonce implements NonceTypeInterface
+class FieldType extends Nonce implements NonceType
 {
 
     /**
