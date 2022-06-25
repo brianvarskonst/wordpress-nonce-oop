@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace NoncesManager\Tests\Nonce;
+namespace Bvsk\WordPress\NonceManager\Tests\Nonce;
 
 use NoncesManager\Nonces\Nonce;
 use NoncesManager\Tests\AbstractTestCase;

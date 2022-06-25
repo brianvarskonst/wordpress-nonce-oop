@@ -1,6 +1,6 @@
 <?php
 
-namespace NoncesManager\Tests\Utility;
+namespace Bvsk\WordPress\NonceManager\Tests\Utility;
 
 use BadMethodCallException;
 use ReflectionClass;

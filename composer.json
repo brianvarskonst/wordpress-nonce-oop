@@ -10,9 +10,9 @@
     ],
     "authors": [
         {
-          "name": "Brian Schäffner",
-          "email": "burnify.design@gmail.com",
-          "role":  "Developer"
+            "name": "Brian Schäffner",
+            "email": "burnify.design@gmail.com",
+            "role": "Developer"
         }
     ],
     "minimum-stability": "dev",
@@ -31,12 +31,12 @@
     },
     "autoload": {
         "psr-4": {
-          "NoncesManager\\": "src/NoncesManager"
+            "Bvsk\\WordPress\\NonceManager\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "NoncesManager\\Tests\\": "tests/src/"
+            "Bvsk\\WordPress\\NonceManager\\Tests\\": "tests/src/"
         }
     },
     "config": {

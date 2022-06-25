@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace NoncesManager\Nonces\Verification;
+namespace Bvsk\WordPress\NonceManager\Nonces\Verification;
 
 use InvalidArgumentException;
 use NoncesManager\Nonces\Nonce;

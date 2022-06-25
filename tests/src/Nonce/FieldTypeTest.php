@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace NoncesManager\Tests\Nonce;
+namespace Bvsk\WordPress\NonceManager\Tests\Nonce;
 
 use Brain\Monkey\Functions;
 use NoncesManager\Nonces\Types\UrlType;

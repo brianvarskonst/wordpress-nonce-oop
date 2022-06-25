@@ -1,7 +1,7 @@
 <?php
 
 
-namespace NoncesManager\Nonces;
+namespace Bvsk\WordPress\NonceManager\Nonces;
 
 interface Nonce
 {

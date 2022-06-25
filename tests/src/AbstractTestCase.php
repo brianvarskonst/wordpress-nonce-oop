@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace NoncesManager\Tests;
+namespace Bvsk\WordPress\NonceManager\Tests;
 
 use PHPUnit\Framework\TestCase;
 

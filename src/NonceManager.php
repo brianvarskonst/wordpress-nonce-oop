@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace NoncesManager;
+namespace Bvsk\WordPress\NonceManager;
 
 final class NonceManager
 {

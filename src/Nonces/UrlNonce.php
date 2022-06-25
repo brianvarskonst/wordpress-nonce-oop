@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace NoncesManager\Nonces;
+namespace Bvsk\WordPress\NonceManager\Nonces;
 
 class UrlNonce extends SimpleNonce
 {

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace NoncesManager\Nonces\Verification;
+namespace Bvsk\WordPress\NonceManager\Nonces\Verification;
 
 use NoncesManager\Nonces\Nonce;
 
