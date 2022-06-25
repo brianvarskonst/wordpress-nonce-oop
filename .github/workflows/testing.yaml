@@ -20,9 +20,6 @@ jobs:
 
             -   uses: actions/checkout@v1
 
-#            -   name: Packagist.com Auth
-#                run: composer config --global --auth http-basic.repo.packagist.com token ${{ secrets.PACKAGIST_TOKEN }}
-
             -   name: Get Composer Cache Directory
                 id: composer-cache
                 run: |
