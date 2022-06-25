@@ -6,7 +6,6 @@ namespace Bvsk\WordPress\NonceManager\Nonces;
 
 class SimpleNonce extends AbstractNonce
 {
-
     public function check(): bool
     {
         return !empty($this->getToken());

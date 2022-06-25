@@ -17,6 +17,7 @@ class UrlNonce extends SimpleNonce
         string $requestName,
         int $lifetime = DAY_IN_SECONDS
     ) {
+
         $this->url = $url;
 
         parent::__construct($action, $requestName, $lifetime);

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Bvsk\WordPress\NonceManager\Nonces\Verification;
 
 use NoncesManager\Nonces\Nonce;
@@ -10,7 +9,8 @@ use NoncesManager\Nonces\Nonce;
  *
  * @package NoncesManager\Nonces\Verification
  */
-interface Verifier {
+interface Verifier
+{
     /**
      * Verify the Nonce with time limit
      *

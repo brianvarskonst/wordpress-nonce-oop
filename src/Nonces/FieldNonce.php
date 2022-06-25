@@ -19,6 +19,7 @@ class FieldNonce extends SimpleNonce
         int $lifetime = DAY_IN_SECONDS,
         bool $referer = false
     ) {
+
         parent::__construct($action, $requestName, $lifetime);
 
         $this->referer = $referer;
@@ -49,14 +50,14 @@ class FieldNonce extends SimpleNonce
     {
         echo wp_kses(
             $this->field,
-            array(
+            [
                 'input' => [
                     'type' => [],
                     'id' => [],
                     'name' => [],
                     'value' => [],
                 ],
-            )
+            ]
         );
     }
 
