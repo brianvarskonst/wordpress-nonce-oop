@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Bvsk\WordPress\NonceManager\Verification;
 
+use Bvsk\WordPress\NonceManager\Nonces\FieldNonce;
 use Bvsk\WordPress\NonceManager\Nonces\Nonce;
+use Bvsk\WordPress\NonceManager\Nonces\UrlNonce;
 use InvalidArgumentException;
 
 class NonceVerifier implements Verifier
@@ -14,6 +16,18 @@ class NonceVerifier implements Verifier
         if ($nonce->getToken() === null) {
             throw new InvalidArgumentException(
                 'Invalid Nonce with an empty token provided.'
+            );
+        }
+
+        if ($nonce instanceof UrlNonce && !$this->isAdminReferer($nonce)) {
+            throw new InvalidArgumentException(
+                'Invalid UrlNonce was provided.'
+            );
+        }
+
+        if ($nonce instanceof FieldNonce && !$this->isAjaxReferer($nonce)) {
+            throw new InvalidArgumentException(
+                'Invalid FieldNonce was provided.'
             );
         }
 
@@ -39,8 +53,6 @@ class NonceVerifier implements Verifier
      *
      * @link https://developer.wordpress.org/reference/functions/check_admin_referer
      *
-     * TODO: Implement - optional $requestArgs to method properties
-     * TODO: Implement - RequestArgumentParser as a Helper Parser
      * $requestArgs Optional. -> Inject RequestArgumentParser
      * Key to check for the nonce in `$_REQUEST` (since 2.5). Default '_wpnonce'.
      *
@@ -60,8 +72,6 @@ class NonceVerifier implements Verifier
      *
      * @link https://developer.wordpress.org/reference/functions/check_ajax_referer
      *
-     * TODO: Implement - optional $requestArgs to method properties
-     * TODO: Implement - RequestArgumentParser as a Helper Parser
      * $requestArgs Optional. -> Inject RequestArgumentParser
      * Key to check for the nonce in `$_REQUEST` (since 2.5).
      * If false, `$_REQUEST` values will be evaluated for '_ajax_nonce',
