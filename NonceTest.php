@@ -76,7 +76,7 @@ class NonceTest
      */
     private function createNonceManager(): void {
         // Configuration for the NonceManager.
-        $configuration = new Configuration(
+        $configuration = new BaseConfiguration(
             'display-post-' . $this->postID,
             '_wp_nonce_test',
             $this->lifetime
@@ -85,7 +85,7 @@ class NonceTest
         // Create an new NonceManager
         $fieldType = new FieldType($configuration);
         $urlType = new UrlType($configuration);
-        $verifier = new Verifier($configuration);
+        $verifier = new NonceVerifier($configuration);
 
         $this->NonceManager = NonceManager::create($configuration, $fieldType, $urlType, $verifier);
     }

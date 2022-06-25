@@ -85,7 +85,7 @@ class NonceManagerCreateTest extends AbstractTestCase
 
         $this->fieldType = new FieldType($this->configuration);
         $this->urlType = new UrlType($this->configuration);
-        $this->verifier = new Verifier($this->configuration);
+        $this->verifier = new NonceVerifier($this->configuration);
     }
 
     /**

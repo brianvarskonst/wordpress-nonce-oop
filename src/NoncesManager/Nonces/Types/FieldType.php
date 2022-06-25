@@ -6,82 +6,62 @@ namespace NoncesManager\Nonces\Types;
 
 use NoncesManager\Nonces\Nonce;
 
-/**
- * Class FieldType
- * Create Nonce Field
- *
- * @package NoncesManager\Nonces\Types
- */
-class FieldType extends Nonce implements NonceTypeInterface
+class FieldType extends AbstractNonceType implements RenderableNonceType
 {
+    private bool $referer;
+
+    private ?string $field = null;
 
     /**
-     * field
-     *
-     * @access private
-     * @var string
-     **/
-    private $field = '';
+     * @param boolean $referer Sets the referer field for validation.
+     */
+    public function __construct(Nonce $nonce, bool $referer = false)
+    {
+        $this->referer = $referer;
+
+        parent::__construct($nonce);
+    }
 
     /**
      * Generate a hidden nonce input field for forms
      *
      * @link https://developer.wordpress.org/reference/functions/wp_nonce_field
-     *
-     * @param boolean $referer  Sets the referer field for validation.
-     * @param boolean $echo     Either it displays the hidden form field or it returns.
-     *
-     * @return string $field   The generated field - Hidden Input field with nonce as HTML markup
      **/
-    public function generate(bool $referer = false, bool $echo = false): string
+    public function generate(): string
     {
-        if (!$this->check()) {
-            $this->create();
+        if (!$this->nonce->check()) {
+            $this->nonce->create();
         }
 
-        $field = wp_nonce_field($this->getAction(), $this->getRequestName(), $referer, $echo);
+        $field = wp_nonce_field(
+            $this->nonce->getAction(),
+            $this->nonce->getRequestName(),
+            $this->referer,
+            false
+        );
 
-        $this->setField($field);
+        $this->field = $field;
 
-        if ($echo) {
-            echo wp_kses(
-                $this->getField(),
-                array(
-                    'input' => array(
-                        'type' => array(),
-                        'id' => array(),
-                        'name' => array(),
-                        'value' => array(),
-                    ),
-                )
-            );
-        }
-
-        return $this->getField();
+        return $this->field;
     }
 
-    /**
-     * Set the new generated Field
-     *
-     * Don't expose this method, only set the field with the generate method
-     *
-     * @param string $newField The new field.
-     *
-     * @return void
-     **/
-    protected function setField(string $newField): void
+    public function render(): void
     {
-        $this->field = $newField;
+        echo wp_kses(
+            $this->getField(),
+            array(
+                'input' => [
+                    'type' => [],
+                    'id' => [],
+                    'name' => [],
+                    'value' => [],
+                ],
+            )
+        );
     }
 
-    /**
-     * Get the Field
-     *
-     * @return string The generated Field
-     **/
     public function getField(): string
     {
         return $this->field;
     }
-
 }

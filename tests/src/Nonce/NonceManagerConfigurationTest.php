@@ -42,7 +42,7 @@ class NonceManagerConfigurationTest extends AbstractTestCase
     /**
      * The configuration.
      *
-     * @var Configuration
+     * @var BaseConfiguration
      **/
     public $configuration;
 
@@ -74,7 +74,7 @@ class NonceManagerConfigurationTest extends AbstractTestCase
         // The filter should be added once.
         Filters::expectAdded('nonce_life')->once();
 
-        $this->configuration = new Configuration($this->action, $this->request, $this->lifetime);
+        $this->configuration = new BaseConfiguration($this->action, $this->request, $this->lifetime);
 
         self::assertSame($this->configuration->getAction(), $this->action);
         self::assertSame($this->configuration->getRequestName(), $this->request);
@@ -99,7 +99,7 @@ class NonceManagerConfigurationTest extends AbstractTestCase
         // The filter should be added once.
         Filters::expectAdded('nonce_life')->never();
 
-        $this->configuration = new Configuration($this->action, $this->request, $this->lifetime);
+        $this->configuration = new BaseConfiguration($this->action, $this->request, $this->lifetime);
 
         self::assertNotSame($this->configuration->nonceLifetime(DAY_IN_SECONDS), $this->lifetime);
     }

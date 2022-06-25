@@ -8,7 +8,7 @@ use NoncesManager\Tests\AbstractTestCase;
 
 use Brain\Monkey\Functions;
 
-use NoncesManager\Configuration;
+use NoncesManager\BaseConfiguration;
 use NoncesManager\Nonces\Nonce;
 use NoncesManager\Nonces\Verification\Verifier;
 
@@ -103,7 +103,7 @@ class VerifierTest extends AbstractTestCase
 
         // Check auto-nonce assignment.
         $_REQUEST[$this->request] = $nonce;
-        $verify = new Verifier($this->configuration);
+        $verify = new NonceVerifier($this->configuration);
         $valid = $verify->verify();
         self::assertTrue($valid);
     }
@@ -120,7 +120,7 @@ class VerifierTest extends AbstractTestCase
         $create = new Nonce($this->configuration);
         $create->create();
 
-        $verify = new Verifier($this->configuration);
+        $verify = new NonceVerifier($this->configuration);
         $age = $verify->getAge();
 
         self::assertSame(1, $age);

@@ -9,7 +9,7 @@ use NoncesManager\Tests\AbstractTestCase;
 
 use Brain\Monkey\WP\Filters;
 
-use NoncesManager\Configuration;
+use NoncesManager\BaseConfiguration;
 use NoncesManager\NonceManager;
 use NoncesManager\Nonces\Types\FieldType;
 use NoncesManager\Nonces\Types\UrlType;
@@ -82,7 +82,7 @@ class NonceManagerBuildTest extends AbstractTestCase
         // The filter should be added once.
         Filters::expectAdded('nonce_life')->once();
 
-        $this->configuration = new Configuration($this->action, $this->request, $this->lifetime);
+        $this->configuration = new BaseConfiguration($this->action, $this->request, $this->lifetime);
 
         $this->nonceManager = NonceManager::build($this->configuration);
     }
@@ -104,7 +104,7 @@ class NonceManagerBuildTest extends AbstractTestCase
      */
     public function testGetConfiguration(): void
     {
-        self::assertInstanceOf(Configuration::class, $this->nonceManager->Configuration());
+        self::assertInstanceOf(BaseConfiguration::class, $this->nonceManager->Configuration());
     }
 
     /**
@@ -144,6 +144,6 @@ class NonceManagerBuildTest extends AbstractTestCase
      */
     public function testGetVerifier(): void
     {
-        self::assertInstanceOf(Verifier::class, $this->nonceManager->Verifier());
+        self::assertInstanceOf(NonceVerifier::class, $this->nonceManager->Verifier());
     }
 }

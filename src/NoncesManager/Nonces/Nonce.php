@@ -1,50 +1,30 @@
 <?php
-/**
- * Create Nonce
- */
 
-declare(strict_types=1);
 
 namespace NoncesManager\Nonces;
 
-use NoncesManager\Configuration;
-
-/**
- * Class Nonce
- * Create Nonce
- *
- * @package NoncesManager\Nonces
- */
-class Nonce extends NonceAbstract implements NonceInterface
+interface Nonce
 {
+
     /**
-     * Configures the settings
-     *
-     * @param Configuration $configuration The configuration.
+     * Get the nonce
      **/
-    public function __construct(Configuration $configuration)
-    {
-        $this->setAction($configuration->getAction());
-        $this->setRequestName($configuration->getRequestName());
-        $this->setLifetime($configuration->getLifetime());
-    }
+    public function getNonce(): string;
 
     /**
-     * {@inheritDoc}
-     */
-    public function create(): void
-    {
-        $this->setNonce(wp_create_nonce($this->getAction()));
-    }
-
-    /**
-     * Check if Nonce is setted or not
+     * Get the lifetime of the nonce
      *
-     * @return bool     true if is setted | false if isn't setted
-     */
-    protected function check(): bool {
-        $nonce = $this->getNonce();
+     * @param boolean $actualLifetime   Whether to run the 'nonce_life' filter or not. Optional. Default is true.
+     **/
+    public function getLifetime(bool $actualLifetime = true): int;
 
-        return ($nonce !== null || $nonce !== '');
-    }
+    /**
+     * Get the action
+     **/
+    public function getAction(): string;
+
+    /**
+     * Get the request name
+     **/
+    public function getRequestName(): string;
 }
