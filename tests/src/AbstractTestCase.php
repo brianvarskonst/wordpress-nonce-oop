@@ -20,7 +20,7 @@ abstract class AbstractTestCase extends TestCase
 {
 
     /**
-     * Define the used standard Wordpress Time Interval
+     * Define the used standard WordPress Time Interval
      */
     private function defineDefaultTimeInterval(): void {
         if (!defined('DAY_IN_SECONDS')) {

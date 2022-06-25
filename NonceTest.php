@@ -29,7 +29,7 @@ class NonceTest
      *
      * Seconds: only an int value
      *
-     * Above use Wordpress Default Time interval Constants
+     * Above use WordPress Default Time interval Constants
      * Minutes: MINUTE_IN_SECONDS * int amount
      * Hours: HOUR_IN_SECONDS * int amount
      * Days: DAY_IN_SECONDS * int amount

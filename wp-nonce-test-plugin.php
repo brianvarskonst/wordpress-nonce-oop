@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Plugin Name: Wordpress Nonce Test Plugin
+ * Plugin Name: WordPress Nonce Test Plugin
  * Plugin URI: https://github.com/brianvarskonst/wordpress-nonce-oop
- * Description: Wordpress Nonce usage in a demo plugin
+ * Description: WordPress Nonce usage in a demo plugin
  * Version: 1.0.
  * Author: Brian Schäffner
  * Author URI: https://github.com/brianvarskonst
@@ -36,12 +36,12 @@ function createErrorMessage(string $message, string $template = '%s: ') {
 
 // Check the minimum required php version
 if (PHP_VERSION_ID < 70200) {
-    createErrorMessage('Auf Ihrem Server läuft PHP version ' . PHP_VERSION . ', Wordpress Nonce Test Plugin benötigt mindestens PHP 7.2.0');
+    createErrorMessage('Auf Ihrem Server läuft PHP version ' . PHP_VERSION . ', WordPress Nonce Test Plugin benötigt mindestens PHP 7.2.0');
 }
 
 // Check if composer install was executed
 if (!file_exists(__DIR__ . '/vendor/autoload.php')) {
-    createErrorMessage('Bitte führen Sie zuerst "composer install" aus um alle von Wordpress Nonce Test Plugin benötigten Abhängigkeiten zu installieren.');
+    createErrorMessage('Bitte führen Sie zuerst "composer install" aus um alle von WordPress Nonce Test Plugin benötigten Abhängigkeiten zu installieren.');
 }
 
 require_once __DIR__ . '/vendor/autoload.php';

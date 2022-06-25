@@ -1,4 +1,4 @@
-# Wordpress Nonce
+# WordPress Nonce
 WordPress Nonce in an Object Oriented Way,\
 this Library implements the WordPress Nonces functionality (wp_nonce_*()) like a Manager.
 
@@ -44,7 +44,7 @@ $ vendor/bin/phpunit
 I have created a example plugin ([wp-nonce-test-plugin](https://github.com/brianvarskonst/wordpress-nonce-oop/blob/master/wp-nonce-test-plugin.php)) to use this nonce manager with an example implementation of [NonceTest](https://github.com/brianvarskonst/wordpress-nonce-oop/blob/master/NonceTest.php) Class`.
 
 ### The Configuration:
-Wordpress Nonce need an action to find the current action which is secured by a nonce.
+WordPress Nonce need an action to find the current action which is secured by a nonce.
 Usually forms or Urls passes the nonce. 
 
 - The first parameter (`string: actionName`) of the configuration defines the action name of this nonce.  
@@ -154,7 +154,7 @@ $isAjaxReferer = $verifier->checkAjaxReferer();
 - Add more manager behavior, manage all nonces used in the current wordpress installation
 
 ## Credits
-* [Wordpress Nonces Documentation](https://codex.wordpress.org/WordPress_Nonces)
+* [WordPress Nonces Documentation](https://codex.wordpress.org/WordPress_Nonces)
 * [PHP Unit Testing Documentation](https://phpunit.de)
 
 ## License
