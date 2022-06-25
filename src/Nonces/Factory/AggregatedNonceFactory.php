@@ -16,10 +16,14 @@ class AggregatedNonceFactory implements NonceFactory
      */
     private array $childFactories;
 
-    public function __construct(array $types, NonceFactory ...$childFactories)
+    public function __construct(NonceFactory ...$childFactories)
     {
-        $this->types = $types;
         $this->childFactories = $childFactories;
+
+        $this->types = array_map(
+            static fn(NonceFactory $factory): string => $factory->getSupportedType(),
+            $childFactories
+        );
     }
 
     public function accepts(string $type, array $data): bool
@@ -27,10 +31,15 @@ class AggregatedNonceFactory implements NonceFactory
         return in_array($type, $this->types, true);
     }
 
+    public function getSupportedType(): string
+    {
+        return implode(', ', $this->types);
+    }
+
     /**
      * @throws InvalidArgumentException
      */
-    public function create(string $type, array $data): Nonce
+    public function create(string $type, array $data = []): Nonce
     {
         foreach ($this->childFactories as $factory) {
             if ($factory->accepts($type, $data)) {
@@ -41,10 +50,5 @@ class AggregatedNonceFactory implements NonceFactory
         throw new InvalidArgumentException(
             "Invalid type or data was provided, no supported factory could be found."
         );
-    }
-
-    public function getSupportedTypes(): array
-    {
-        return $this->types;
     }
 }

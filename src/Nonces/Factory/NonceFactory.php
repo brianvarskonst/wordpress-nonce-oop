@@ -8,5 +8,7 @@ interface NonceFactory
 {
     public function accepts(string $type, array $data): bool;
 
-    public function create(string $type, array $data): Nonce;
+    public function getSupportedType(): string;
+
+    public function create(string $type, array $data = []): Nonce;
 }

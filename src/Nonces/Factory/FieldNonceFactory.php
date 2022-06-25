@@ -9,21 +9,17 @@ use Bvsk\WordPress\NonceManager\Nonces\Nonce;
 
 class FieldNonceFactory extends SimpleNonceFactory
 {
-    public function accepts(string $type, array $data): bool
+    public function getSupportedType(): string
     {
-        if (!isset($data['referer'])) {
-            return false;
-        }
-
-        return $type === FieldNonce::class;
+       return FieldNonce::class;
     }
 
-    public function create(string $type, array $data): Nonce
+    public function create(string $type, array $data = []): Nonce
     {
         return new FieldNonce(
-            (string) $data['action'],
-            (string) $data['requestName'],
-            $this->generateLifetime($data['lifetime']),
+            $data['action'] ?? DefaultNonceProperties::ACTION,
+            $data['requestName'] ?? DefaultNonceProperties::REQUEST_NAME,
+            $this->generateLifetime($data['lifetime'] ?? DefaultNonceProperties::LIFETIME),
             (bool) $data['referer']
         );
     }

@@ -8,11 +8,8 @@ use Bvsk\WordPress\NonceManager\Nonces\Factory\AggregatedNonceFactory;
 use Bvsk\WordPress\NonceManager\Nonces\Factory\FieldNonceFactory;
 use Bvsk\WordPress\NonceManager\Nonces\Factory\SimpleNonceFactory;
 use Bvsk\WordPress\NonceManager\Nonces\Factory\UrlNonceFactory;
-use Bvsk\WordPress\NonceManager\Nonces\FieldNonce;
 use Bvsk\WordPress\NonceManager\Nonces\Nonce;
 use Bvsk\WordPress\NonceManager\Nonces\Factory\NonceFactory;
-use Bvsk\WordPress\NonceManager\Nonces\SimpleNonce;
-use Bvsk\WordPress\NonceManager\Nonces\UrlNonce;
 use Bvsk\WordPress\NonceManager\Verification\NonceVerifier;
 use Bvsk\WordPress\NonceManager\Verification\Verifier;
 
@@ -35,11 +32,6 @@ final class NonceManager
     {
         return new NonceManager(
             new AggregatedNonceFactory(
-                [
-                    SimpleNonce::class,
-                    FieldNonce::class,
-                    UrlNonce::class,
-                ],
                 new SimpleNonceFactory(),
                 new FieldNonceFactory(),
                 new UrlNonceFactory()

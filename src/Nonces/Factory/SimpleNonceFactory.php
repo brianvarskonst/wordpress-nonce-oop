@@ -9,21 +9,27 @@ use Bvsk\WordPress\NonceManager\Nonces\SimpleNonce;
 
 class SimpleNonceFactory implements NonceFactory
 {
+
     public function accepts(string $type, array $data): bool
     {
-        return $type === SimpleNonce::class;
+        return $type === $this->getSupportedType();
     }
 
-    public function create(string $type, array $data): Nonce
+    public function getSupportedType(): string
+    {
+        return SimpleNonce::class;
+    }
+
+    public function create(string $type, array $data = []): Nonce
     {
         return new SimpleNonce(
-            (string) $data['action'],
-            (string) $data['requestName'],
-            $this->generateLifetime($data['lifetime'])
+            $data['action'] ?? DefaultNonceProperties::ACTION,
+            $data['requestName'] ?? DefaultNonceProperties::REQUEST_NAME,
+            $this->generateLifetime($data['lifetime'] ?? DefaultNonceProperties::LIFETIME)
         );
     }
 
-    protected function generateLifetime(?int $lifetime): int
+    protected function generateLifetime(int $lifetime): int
     {
         /**
          * Double the lifetime because:

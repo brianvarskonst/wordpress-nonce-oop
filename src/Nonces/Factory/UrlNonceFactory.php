@@ -7,7 +7,7 @@ namespace Bvsk\WordPress\NonceManager\Nonces\Factory;
 use Bvsk\WordPress\NonceManager\Nonces\Nonce;
 use Bvsk\WordPress\NonceManager\Nonces\UrlNonce;
 
-class UrlNonceFactory implements NonceFactory
+class UrlNonceFactory extends SimpleNonceFactory
 {
     public function accepts(string $type, array $data): bool
     {
@@ -15,17 +15,22 @@ class UrlNonceFactory implements NonceFactory
             return false;
         }
 
-        return $type === UrlNonce::class;
+        return $type === $this->getSupportedType();
     }
 
-    public function create(string $type, array $data): Nonce
+    public function getSupportedType(): string
+    {
+        return UrlNonce::class;
+    }
+
+    public function create(string $type, array $data = []): Nonce
     {
 
         return new UrlNonce(
-            (string) $data['url'],
-            (string) $data['action'],
-            (string) $data['requestName'],
-            $this->generateLifetime($data['lifetime']),
+            $data['url'],
+            $data['action'] ?? DefaultNonceProperties::ACTION,
+            $data['requestName'] ?? DefaultNonceProperties::REQUEST_NAME,
+            $this->generateLifetime($data['lifetime'] ?? DefaultNonceProperties::LIFETIME),
         );
     }
 }

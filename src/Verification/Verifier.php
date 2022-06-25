@@ -23,7 +23,7 @@ interface Verifier
      *
      * @link https://developer.wordpress.org/reference/functions/wp_verify_nonce
      *
-     * @return string $age  false if it's invalid or 1 or 2 if it's valid.
+     * @return string $age false if it's invalid or 1 or 2 if it's valid.
      **/
     public function getAge(Nonce $nonce): string;
 
