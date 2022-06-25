@@ -3,9 +3,9 @@
 declare(strict_types=1);
 
 /**
- * Plugin Name: Wordpress Nonce Test Plugin
+ * Plugin Name: WordPress Nonce Test Plugin
  * Plugin URI: https://github.com/brianvarskonst/wordpress-nonce-oop
- * Description: Wordpress Nonce usage in a demo plugin
+ * Description: WordPress Nonce usage in a demo plugin
  * Version: 1.0.
  * Author: Brian Schäffner
  * Author URI: https://github.com/brianvarskonst
