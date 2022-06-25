@@ -1,8 +1,8 @@
 <?php
 
-namespace Bvsk\WordPress\NonceManager\Nonces\Verification;
+namespace Bvsk\WordPress\NonceManager\Verification;
 
-use NoncesManager\Nonces\Nonce;
+use Bvsk\WordPress\NonceManager\Nonces\Nonce;
 
 /**
  * Interface VerifierInterface

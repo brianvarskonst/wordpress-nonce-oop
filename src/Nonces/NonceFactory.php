@@ -11,7 +11,8 @@ class NonceFactory
         if ($lifetime) {
             /**
              * Double the lifetime because:
-             * WordPress uses a system with two ticks (half of the lifetime) and validates nonces from the current tick and the last tick.
+             * WordPress uses a system with two ticks (half of the lifetime)
+             * and validates nonces from the current tick and the last tick.
              */
             $lifetime *= 2;
 
