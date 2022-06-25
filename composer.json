@@ -25,9 +25,12 @@
     },
     "require-dev": {
         "inpsyde/php-coding-standards": "^1.0",
-        "brain/monkey": "~1.4",
+        "brain/monkey": "^2.6",
         "symfony/var-dumper": "^5",
-        "phpunit/phpunit": "^8"
+        "phpunit/phpunit": "^8",
+        "vimeo/psalm": "^4",
+        "psalm/plugin-mockery": "^0.9.1",
+        "roots/wordpress": "5.3.*@stable"
     },
     "autoload": {
         "psr-4": {
@@ -36,8 +39,22 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Bvsk\\WordPress\\NonceManager\\Tests\\": "tests/src/"
+            "Bvsk\\WordPress\\NonceManager\\Tests\\": "tests/src"
         }
+    },
+    "scripts": {
+        "cs": "@php ./vendor/bin/phpcs -s",
+        "cbf": "@php ./vendor/bin/phpcbf",
+        "psalm": "@php ./vendor/vimeo/psalm/psalm --no-cache --no-diff --no-progress --output-format=compact",
+        "tests": "@php ./vendor/bin/phpunit",
+        "tests:no-cov": "@php ./vendor/bin/phpunit --no-coverage",
+        "tests:unit": "@php ./vendor/bin/phpunit --testsuite=PHPUnit",
+        "tests:unit:no-cov": "@php ./vendor/bin/phpunit --testsuite=PHPUnit --no-coverage",
+        "qa": [
+            "@cs",
+            "@psalm",
+            "@tests"
+        ]
     },
     "config": {
         "optimize-autoloader": true,
