@@ -18,7 +18,9 @@ class UrlNonceFactory implements NonceFactory
         return $type === UrlNonce::class;
     }
 
-    public function create(string $type, array $data): Nonce {
+    public function create(string $type, array $data): Nonce
+    {
+
         return new UrlNonce(
             (string) $data['url'],
             (string) $data['action'],

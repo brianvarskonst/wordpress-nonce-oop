@@ -38,7 +38,7 @@ final class NonceManager
                 [
                     SimpleNonce::class,
                     FieldNonce::class,
-                    UrlNonce::class
+                    UrlNonce::class,
                 ],
                 new SimpleNonceFactory(),
                 new FieldNonceFactory(),

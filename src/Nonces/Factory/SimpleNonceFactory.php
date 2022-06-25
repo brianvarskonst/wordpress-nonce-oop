@@ -36,5 +36,7 @@ class SimpleNonceFactory implements NonceFactory
             'nonce_life',
             static fn(int $oldLifetime): int => $lifetime
         );
+
+        return $lifetime;
     }
 }
