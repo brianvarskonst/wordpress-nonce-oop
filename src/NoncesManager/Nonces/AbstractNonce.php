@@ -6,58 +6,38 @@ namespace NoncesManager\Nonces;
 
 use Stringable;
 
-abstract class AbstractBaseNonce implements Nonce, Stringable
+abstract class AbstractNonce implements Nonce, Stringable
 {
     /**
      * The name of the action
      **/
-    private string $action;
+    protected string $action;
 
     /**
      * The name of the request
      **/
-    private string $requestName;
-
-    /**
-     * The nonce
-     **/
-    private string $nonce;
+    protected string $requestName;
 
     /**
      * The lifetime of a nonce in seconds
      **/
-    private int $lifetime;
+    protected int $lifetime;
+
+    /**
+     * cryptographic token
+     */
+    protected string $token;
 
     public function __construct(
         string $action,
         string $requestName,
-        string $nonce,
         int $lifetime = DAY_IN_SECONDS
     ) {
 
         $this->action = $action;
         $this->requestName = $requestName;
-        $this->nonce = $nonce;
         $this->lifetime = $lifetime;
-    }
-
-    protected function setNonce(string $nonce): self
-    {
-        $this->nonce = $nonce;
-
-        return $this;
-    }
-
-    public function getNonce(): string
-    {
-        return $this->nonce;
-    }
-
-    protected function setLifetime(int $lifetime): self
-    {
-        $this->lifetime = $lifetime;
-
-        return $this;
+        $this->token = wp_create_nonce($action);
     }
 
     public function getLifetime(bool $actualLifetime = true): int
@@ -74,23 +54,9 @@ abstract class AbstractBaseNonce implements Nonce, Stringable
         return $this->lifetime;
     }
 
-    protected function setAction(string $action): self
-    {
-        $this->action = $action;
-
-        return $this;
-    }
-
     public function getAction(): string
     {
         return $this->action;
-    }
-
-    protected function setRequestName(string $requestName): self
-    {
-        $this->requestName = $requestName;
-
-        return $this;
     }
 
     public function getRequestName(): string
@@ -98,8 +64,13 @@ abstract class AbstractBaseNonce implements Nonce, Stringable
         return $this->requestName;
     }
 
+    public function getToken(): string
+    {
+        return $this->token;
+    }
+
     public function __toString(): string
     {
-        return $this->getNonce();
+        return $this->getToken();
     }
 }

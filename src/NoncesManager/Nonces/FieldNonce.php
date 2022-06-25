@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 
-namespace NoncesManager\Nonces\Types;
+namespace NoncesManager\Nonces;
 
-use NoncesManager\Nonces\Nonce;
-
-class FieldType extends AbstractNonceType implements RenderableNonceType
+class FieldNonce extends SimpleNonce
 {
     private bool $referer;
 
@@ -15,11 +13,15 @@ class FieldType extends AbstractNonceType implements RenderableNonceType
     /**
      * @param boolean $referer Sets the referer field for validation.
      */
-    public function __construct(Nonce $nonce, bool $referer = false)
-    {
-        $this->referer = $referer;
+    public function __construct(
+        string $action,
+        string $requestName,
+        int $lifetime = DAY_IN_SECONDS,
+        bool $referer = false
+    ) {
+        parent::__construct($action, $requestName, $lifetime);
 
-        parent::__construct($nonce);
+        $this->referer = $referer;
     }
 
     /**
@@ -27,28 +29,26 @@ class FieldType extends AbstractNonceType implements RenderableNonceType
      *
      * @link https://developer.wordpress.org/reference/functions/wp_nonce_field
      **/
-    public function generate(): string
+    public function generate(): Nonce
     {
-        if (!$this->nonce->check()) {
-            $this->nonce->create();
+        if (!$this->check()) {
+            $this->refresh();
         }
 
-        $field = wp_nonce_field(
-            $this->nonce->getAction(),
-            $this->nonce->getRequestName(),
+        $this->field = wp_nonce_field(
+            $this->action,
+            $this->requestName,
             $this->referer,
             false
         );
 
-        $this->field = $field;
-
-        return $this->field;
+        return $this;
     }
 
     public function render(): void
     {
         echo wp_kses(
-            $this->getField(),
+            $this->field,
             array(
                 'input' => [
                     'type' => [],

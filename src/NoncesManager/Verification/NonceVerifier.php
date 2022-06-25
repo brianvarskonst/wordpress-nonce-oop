@@ -7,12 +7,12 @@ namespace NoncesManager\Nonces\Verification;
 use InvalidArgumentException;
 use NoncesManager\Nonces\Nonce;
 
-class BaseVerifier implements Verifier
+class NonceVerifier implements Verifier
 {
     public function verify(Nonce $nonce): bool
     {
-        if ($nonce->getNonce() === null) {
-            throw new InvalidArgumentException('Empty Nonce provided...');
+        if ($nonce->getToken() === null) {
+            throw new InvalidArgumentException('Invalid Nonce with an empty token provided.');
         }
 
         return (bool) $this->getAge($nonce);
@@ -21,7 +21,7 @@ class BaseVerifier implements Verifier
     public function getAge(Nonce $nonce): string
     {
         return (string) wp_verify_nonce(
-            $nonce->getNonce(),
+            $nonce->getToken(),
             $nonce->getLifetime()
         );
     }

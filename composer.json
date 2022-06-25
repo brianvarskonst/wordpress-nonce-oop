@@ -1,5 +1,5 @@
 {
-    "name": "brianvarskonst/wordpress-nonce-oop",
+    "name": "brianvarskonst/wordpress-nonce",
     "description": "WordPress Nonce in an Object Oriented Way",
     "type": "library",
     "license": "GPL2",
@@ -18,7 +18,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "support": {
-        "issues": "https://github.com/brianvarskonst/wordpress-nonce-oop/issues"
+        "issues": "https://github.com/brianvarskonst/wordpress-nonce/issues"
     },
     "require": {
         "php": ">=7.4"

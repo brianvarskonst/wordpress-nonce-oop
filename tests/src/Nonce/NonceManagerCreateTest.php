@@ -10,7 +10,7 @@ use NoncesManager\Tests\AbstractTestCase;
 
 use NoncesManager\Configuration;
 use NoncesManager\NonceManager;
-use NoncesManager\Nonces\Types\FieldType;
+use NoncesManager\Nonces\Types\FieldTypeNonce;
 use NoncesManager\Nonces\Types\UrlType;
 use NoncesManager\Nonces\Verification\Verifier;
 
@@ -52,7 +52,7 @@ class NonceManagerCreateTest extends AbstractTestCase
     private $nonceManager;
 
     /**
-     * @var FieldType
+     * @var FieldTypeNonce
      */
     private $fieldType;
 
@@ -114,7 +114,7 @@ class NonceManagerCreateTest extends AbstractTestCase
         self::assertInstanceOf(Configuration::class, $this->nonceManager->Configuration());
         self::assertInstanceOf(Nonce::class, $this->nonceManager->Nonce());
         self::assertInstanceOf(FieldType::class, $this->nonceManager->Field());
-        self::assertInstanceOf(UrlType::class, $this->nonceManager->Url());
+        self::assertInstanceOf(UrlNonce::class, $this->nonceManager->Url());
         self::assertInstanceOf(Verifier::class, $this->nonceManager->Verifier());
     }
 }
