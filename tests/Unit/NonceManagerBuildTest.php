@@ -2,19 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Bvsk\WordPress\NonceManager\Tests\Nonce;
+namespace Bvsk\WordPress\NonceManager\Tests\Unit;
 
-use Brain\Monkey\WP\Filters;
+use Bvsk\WordPress\NonceManager\Tests\UnitTestCase;
 use NoncesManager\Nonces\Nonce;
-use NoncesManager\Tests\AbstractTestCase;
-
-use NoncesManager\Configuration;
+use Brain\Monkey\WP\Filters;
+use NoncesManager\BaseConfiguration;
 use NoncesManager\NonceManager;
-use NoncesManager\Nonces\Types\FieldTypeNonce;
+use NoncesManager\Nonces\Types\FieldType;
 use NoncesManager\Nonces\Types\UrlType;
 use NoncesManager\Nonces\Verification\Verifier;
 
-class NonceManagerCreateTest extends AbstractTestCase
+class NonceManagerBuildTest extends UnitTestCase
 {
     /**
      * The Request Name.
@@ -52,7 +51,7 @@ class NonceManagerCreateTest extends AbstractTestCase
     private $nonceManager;
 
     /**
-     * @var FieldTypeNonce
+     * @var FieldType
      */
     private $fieldType;
 
@@ -70,7 +69,7 @@ class NonceManagerCreateTest extends AbstractTestCase
      * Sets up the fixture, for example, opens a network connection.
      * This method is called before a test is executed.
      */
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -81,40 +80,68 @@ class NonceManagerCreateTest extends AbstractTestCase
         // The filter should be added once.
         Filters::expectAdded('nonce_life')->once();
 
-        $this->configuration = new Configuration($this->action, $this->request, $this->lifetime);
+        $this->configuration = new BaseConfiguration($this->action, $this->request, $this->lifetime);
 
-        $this->fieldType = new FieldType($this->configuration);
-        $this->urlType = new UrlType($this->configuration);
-        $this->verifier = new NonceVerifier($this->configuration);
+        $this->nonceManager = NonceManager::build($this->configuration);
     }
 
     /**
      * Test create a new Nonce Manager through the static create method and inject the required Dependencies
      *
-     * @covers \NoncesManager\NonceManager::create
+     * @covers \NoncesManager\NonceManager::build
      */
-    public function testCreatedNonceManager(): void {
-        $this->nonceManager = NonceManager::create($this->configuration, $this->fieldType, $this->urlType, $this->verifier);
-
+    public function testBuildedNonceManager(): void
+    {
         self::assertInstanceOf(NonceManager::class, $this->nonceManager);
     }
 
     /**
-     * Test the created Nonce Manager and test the inject Dependencies
+     * Test the builded Configuration
      *
      * @covers \NoncesManager\NonceManager::Configuration
+     */
+    public function testGetConfiguration(): void
+    {
+        self::assertInstanceOf(BaseConfiguration::class, $this->nonceManager->Configuration());
+    }
+
+    /**
+     * Test the builded Nonce
+     *
      * @covers \NoncesManager\NonceManager::Nonce
+     */
+    public function testGetNonce(): void
+    {
+        self::assertInstanceOf(Nonce::class, $this->nonceManager->Nonce());
+    }
+
+    /**
+     * Test the builded FieldType
+     *
      * @covers \NoncesManager\NonceManager::Field
+     */
+    public function testGetField(): void
+    {
+        self::assertInstanceOf(FieldType::class, $this->nonceManager->Field());
+    }
+
+    /**
+     * Test the builded UrlType
+     *
      * @covers \NoncesManager\NonceManager::Url
+     */
+    public function testGetUrl(): void
+    {
+        self::assertInstanceOf(UrlType::class, $this->nonceManager->Url());
+    }
+
+    /**
+     * Test the builded Verifier
+     *
      * @covers \NoncesManager\NonceManager::Verifier
      */
-    public function testServicesAreInjected(): void {
-        $this->nonceManager = NonceManager::create($this->configuration, $this->fieldType, $this->urlType, $this->verifier);
-
-        self::assertInstanceOf(Configuration::class, $this->nonceManager->Configuration());
-        self::assertInstanceOf(Nonce::class, $this->nonceManager->Nonce());
-        self::assertInstanceOf(FieldType::class, $this->nonceManager->Field());
-        self::assertInstanceOf(UrlNonce::class, $this->nonceManager->Url());
-        self::assertInstanceOf(Verifier::class, $this->nonceManager->Verifier());
+    public function testGetVerifier(): void
+    {
+        self::assertInstanceOf(NonceVerifier::class, $this->nonceManager->Verifier());
     }
 }

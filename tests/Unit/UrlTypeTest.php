@@ -2,23 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Bvsk\WordPress\NonceManager\Tests\Nonce;
-
-use NoncesManager\Tests\AbstractTestCase;
+namespace Bvsk\WordPress\NonceManager\Tests\Unit;
 
 use Brain\Monkey\Functions;
-
-use NoncesManager\Configuration;
+use Bvsk\WordPress\NonceManager\Tests\UnitTestCase;
 use NoncesManager\Nonces\Types\UrlType;
-
-use NoncesManager\Tests\Utility\PHPUnitUtility;
 
 /**
  * Class UrlTypeTest
  *
  * @package NoncesManager\Tests\Nonce
  */
-class UrlTypeTest extends AbstractTestCase
+class UrlTypeTest extends UnitTestCase
 {
 
     /**

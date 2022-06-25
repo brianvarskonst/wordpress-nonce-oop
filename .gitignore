@@ -1,6 +1,9 @@
 ###> composer/general ###
-# During development phase
 composer.lock
-# omit trailing slash to catch symlinks
 /vendor
 ###< composer/general ###
+
+###> phpunit/general ###
+phpunit.xml
+.phpunit.result.cache
+###< phpunit/general ###

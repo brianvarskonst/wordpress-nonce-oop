@@ -2,22 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Bvsk\WordPress\NonceManager\Tests\Nonce;
+namespace Bvsk\WordPress\NonceManager\Tests\Unit;
 
 use Brain\Monkey\Functions;
+use Bvsk\WordPress\NonceManager\Tests\UnitTestCase;
 use NoncesManager\Nonces\Types\UrlType;
-use NoncesManager\Tests\AbstractTestCase;
-
 use NoncesManager\BaseConfiguration;
 use NoncesManager\Nonces\Types\FieldType;
-use NoncesManager\Tests\Utility\PHPUnitUtility;
 
-/**
- * Class FieldTypeTest
- *
- * @package NoncesManager\Tests\Nonce
- */
-class FieldTypeTest extends AbstractTestCase
+class FieldTypeTest extends UnitTestCase
 {
 
     /**

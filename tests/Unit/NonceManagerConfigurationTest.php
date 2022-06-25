@@ -2,20 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Bvsk\WordPress\NonceManager\Tests\Nonce;
+namespace Bvsk\WordPress\NonceManager\Tests\Unit;
 
 use Brain\Monkey\WP\Filters;
+use Bvsk\WordPress\NonceManager\Tests\UnitTestCase;
 
-use NoncesManager\Tests\AbstractTestCase;
-
-use NoncesManager\Configuration;
-
-/**
- * Class NonceManagerConfigurationTest
- *
- * @package NoncesManager\Tests\Nonce
- */
-class NonceManagerConfigurationTest extends AbstractTestCase
+class NonceManagerConfigurationTest extends UnitTestCase
 {
 
     /**

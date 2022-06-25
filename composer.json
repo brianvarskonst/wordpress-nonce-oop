@@ -27,7 +27,7 @@
         "inpsyde/php-coding-standards": "^1.0",
         "brain/monkey": "^2.6",
         "symfony/var-dumper": "^5",
-        "phpunit/phpunit": "^8",
+        "phpunit/phpunit": "^9.5",
         "vimeo/psalm": "^4",
         "psalm/plugin-mockery": "^0.9.1",
         "roots/wordpress": "5.3.*@stable"
@@ -62,5 +62,8 @@
         "platform": {
             "php": "7.4"
         }
+    },
+    "extra": {
+        "wordpress-install-dir": "vendor/wordpress/wordpress"
     }
 }

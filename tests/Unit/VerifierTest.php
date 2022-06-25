@@ -2,22 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Bvsk\WordPress\NonceManager\Tests\Nonce;
-
-use NoncesManager\Tests\AbstractTestCase;
+namespace Bvsk\WordPress\NonceManager\Tests\Unit;
 
 use Brain\Monkey\Functions;
-
+use Bvsk\WordPress\NonceManager\Tests\UnitTestCase;
 use NoncesManager\BaseConfiguration;
 use NoncesManager\Nonces\Nonce;
 use NoncesManager\Nonces\Verification\Verifier;
 
-/**
- * Class VerifierTest
- *
- * @package NoncesManager\Tests\Nonce
- */
-class VerifierTest extends AbstractTestCase
+class VerifierTest extends UnitTestCase
 {
 
     /**
