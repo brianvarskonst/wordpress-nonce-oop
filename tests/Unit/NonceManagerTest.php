@@ -83,6 +83,24 @@ class NonceManagerTest extends UnitTestCase
         $this->assertSame($url, $nonce->getUrl());
     }
 
+    public function testVerifyNonceWithNonceManager(): void
+    {
+        $testee = $this->buildTestee();
+
+        $token = 'fooBar';
+
+        expect('add_filter')->once();
+        expect('apply_filters')->once()->andReturn(DefaultNonceProperties::LIFETIME);
+        expect('wp_create_nonce')->once()->andReturn($token);
+
+        $nonce = $testee->createNonce(SimpleNonce::class);
+        $this->assertInstanceOf(SimpleNonce::class, $nonce);
+
+        expect('wp_verify_nonce')->once()->andReturn(true);
+
+        $this->assertTrue($testee->verify($nonce));
+    }
+
     private function buildTestee(): NonceManager
     {
         return NonceManager::createFromDefaults();
