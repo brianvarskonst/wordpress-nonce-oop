@@ -212,6 +212,12 @@ $ composer tests:integration
 * [WordPress Nonces Documentation](https://codex.wordpress.org/WordPress_Nonces)
 * [PHPUnit Documentation](https://phpunit.de)
 * [Brain-WP / BrainMonkey](https://github.com/Brain-WP/BrainMonkey)
+* [Inpsyde Coding Standards](https://github.com/inpsyde/php-coding-standards)
 
-### License
-[GPL2](https://www.gnu.de/documents/gpl-2.0.en.html)
+## License
+
+Copyright (c) 2022, Brianvarskonst under [GPL2](https://www.gnu.de/documents/gpl-2.0.en.html) License
+
+## Contributing
+
+All feedback / bug reports / pull requests are welcome.
