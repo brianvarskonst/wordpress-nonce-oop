@@ -220,6 +220,11 @@ $ composer tests:unit
 $ composer tests:integration
 ```
 
+### Testing Plugin
+
+If you want to see how this works in the wild, you can have a look at 
+[WordPress Nonce Manager Test Plugin](https://github.com/brianvarskonst/wordpress-nonce-manager-test-plugin) Repository.
+
 ### Credits
 * [WordPress Nonces Documentation](https://codex.wordpress.org/WordPress_Nonces)
 * [PHPUnit Documentation](https://phpunit.de)
