@@ -1,0 +1,40 @@
+name: Testing
+
+on:
+    push:
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            # Notice: Ubuntu will already ship composer 2 which currently breaks the used tools.
+            -   uses: shivammathur/setup-php@v2
+                with:
+                    php-version: '7.4'
+                    tools: composer:v1
+            # Save the current branch name in an environment variable, to be used for conditional logic below
+            -   name: Extract branch name into env
+                id: git
+                run: echo "::set-output name=branch::$(echo ${GITHUB_REF##*/})"
+
+            -   uses: actions/checkout@v1
+
+            -   name: Get Composer Cache Directory
+                id: composer-cache
+                run: |
+                    echo "::set-output name=dir::$(composer config cache-files-dir)"
+            -   uses: actions/cache@v2
+                with:
+                    path: ${{ steps.composer-cache.outputs.dir }}
+                    key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+                    restore-keys: |
+                        ${{ runner.os }}-composer-
+            -   name: Validate composer.json
+                run: composer validate
+
+            -   name: Install dependencies
+                run: composer install --prefer-dist --no-progress --no-suggest
+
+            -   name: Run Codesniffer
+                run: composer cs

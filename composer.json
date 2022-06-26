@@ -1,6 +1,6 @@
 {
-    "name": "brianvarskonst/wordpress-nonce-oop",
-    "description": "WordPress Nonce in an Object Oriented Way, this Package implements the WordPress Nonces functionality (wp_nonce_*()).",
+    "name": "brianvarskonst/wordpress-nonce",
+    "description": "WordPress Nonce in an Object Oriented Way",
     "type": "library",
     "license": "GPL2",
     "keywords": [
@@ -10,34 +10,60 @@
     ],
     "authors": [
         {
-          "name": "Brian Schäffner",
-          "email": "brianvar.skonst@gmail.com",
-          "role":  "Developer"
+            "name": "Brian Schäffner",
+            "email": "burnify.design@gmail.com",
+            "role": "Developer"
         }
     ],
     "minimum-stability": "dev",
+    "prefer-stable": true,
     "support": {
-        "issues": "https://github.com/brianvarskonst/wordpress-nonce-oop/issues"
+        "issues": "https://github.com/brianvarskonst/wordpress-nonce/issues"
     },
     "require": {
-        "php": ">=7.2.0"
+        "php": ">=7.4"
     },
     "require-dev": {
-        "brain/monkey": "~1.4",
-        "symfony/var-dumper": "^5.0@dev",
-        "phpunit/phpunit": "^8"
+        "inpsyde/php-coding-standards": "^1.0",
+        "brain/monkey": "^2.6",
+        "symfony/var-dumper": "^5",
+        "phpunit/phpunit": "^9.5",
+        "vimeo/psalm": "^4",
+        "psalm/plugin-mockery": "^0.9.1",
+        "roots/wordpress": "5.3.*@stable"
     },
     "autoload": {
         "psr-4": {
-          "NoncesManager\\": "src/NoncesManager"
-        },
-        "classmap": [
-            "NonceTest.php"
-        ]
+            "Bvsk\\WordPress\\NonceManager\\": "src"
+        }
     },
     "autoload-dev": {
         "psr-4": {
-            "NoncesManager\\Tests\\": "tests/src/"
+            "Bvsk\\WordPress\\NonceManager\\Tests\\": "tests/src"
         }
+    },
+    "scripts": {
+        "cs": "@php ./vendor/bin/phpcs -s",
+        "cbf": "@php ./vendor/bin/phpcbf",
+        "psalm": "@php ./vendor/vimeo/psalm/psalm --no-cache --no-diff --no-progress --output-format=compact",
+        "tests": "@php ./vendor/bin/phpunit",
+        "tests:no-cov": "@php ./vendor/bin/phpunit --no-coverage",
+        "tests:unit": "@php ./vendor/bin/phpunit --testsuite=PHPUnit",
+        "tests:unit:no-cov": "@php ./vendor/bin/phpunit --testsuite=PHPUnit --no-coverage",
+        "qa": [
+            "@cs",
+            "@psalm",
+            "@tests"
+        ]
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true,
+        "platform": {
+            "php": "7.4"
+        }
+    },
+    "extra": {
+        "wordpress-install-dir": "vendor/wordpress/wordpress"
     }
 }

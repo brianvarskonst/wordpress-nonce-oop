@@ -1,17 +1,21 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
+<?xml version="1.0"?>
 <phpunit
-    bootstrap="./tests/bootstrap.php"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        bootstrap="tests/bootstrap.php"
+        colors="true"
+        beStrictAboutOutputDuringTests="true"
+        beStrictAboutChangesToGlobalState="true"
+        xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
+>
+    <coverage includeUncoveredFiles="false">
+        <include>
+            <directory suffix=".php">src</directory>
+        </include>
+    </coverage>
 
-    backupGlobals="false"
-         colors="true"
-         convertErrorsToExceptions="true"
-         convertNoticesToExceptions="true"
-         convertWarningsToExceptions="true"
-         stopOnFailure="false">
     <testsuites>
-        <testsuite name="NonceTests">
-            <directory>./tests/src/</directory>
+        <testsuite name="PHPUnit">
+            <directory>tests/Unit/</directory>
         </testsuite>
     </testsuites>
 </phpunit>
