@@ -1,4 +1,4 @@
-# WordPress Nonce
+# WordPress Nonce Manager
 WordPress Nonce in an Object-Oriented Way, \
 this Package provides the WordPress Nonces functionalities (wp_nonce_*()) in a more like Manager-way.
 
