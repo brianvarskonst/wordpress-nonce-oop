@@ -216,7 +216,7 @@ $ composer tests:integration
 
 ## License
 
-Copyright (c) 2022, Brianvarskonst under [GPL2](https://www.gnu.de/documents/gpl-2.0.en.html) License
+Copyright (c) 2022, Brianvarskonst under [MIT](LICENSE) License
 
 ## Contributing
 
