@@ -1,6 +1,6 @@
 # WordPress Nonce
 WordPress Nonce in an Object-Oriented Way, \
-this Library implements the WordPress Nonces functionalities (wp_nonce_*()) in a more likely Manager-way.
+this Package provides the WordPress Nonces functionalities (wp_nonce_*()) in a more like Manager-way.
 
 ## Table of Contents
 
