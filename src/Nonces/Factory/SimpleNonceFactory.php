@@ -9,7 +9,6 @@ use Bvsk\WordPress\NonceManager\Nonces\SimpleNonce;
 
 class SimpleNonceFactory implements NonceFactory
 {
-
     public function accepts(string $type, array $data): bool
     {
         return $type === $this->getSupportedType();

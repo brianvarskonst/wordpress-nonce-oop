@@ -11,7 +11,7 @@ class FieldNonceFactory extends SimpleNonceFactory
 {
     public function getSupportedType(): string
     {
-       return FieldNonce::class;
+        return FieldNonce::class;
     }
 
     public function create(string $type, array $data = []): Nonce
