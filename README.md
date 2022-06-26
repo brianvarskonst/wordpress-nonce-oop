@@ -24,6 +24,18 @@ It was to complex than it should be and also not quite well-structured from an a
 
 That's the reason I decided to modernize it, to a new major version.
 
+### Manager or Service
+
+The main class of this package are named `NonceManager`, the problem for that it is not anymore a manager, 
+you could see this more like a Service for dealing with Nonces, but I want to keep this for a nostalgic reason.
+
+Also, at that time I was mainly programming with `C#` at the Unity Game Engine,
+where this kinda like models are more common practice to have logic that manages smaller components in that way. 
+But for WordPress nonces that makes no sense, because Nonces are only CSRF-Tokens,
+which will expire after a certain time - so this needs not to be that big and complex as it was at the initial version.
+
+Maybe this will change in the future for the next major version in some years. 
+
 ## Requirements
 - PHP 7.4
 - Composer 1 | 2
