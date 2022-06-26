@@ -64,9 +64,6 @@ $nonceManager = NonceManager::createFromDefaults();
 ```php
 use Bvsk\WordPress\NonceManager\NonceManager;
 use Bvsk\WordPress\NonceManager\Nonces\Factory\AggregatedNonceFactory;
-use Bvsk\WordPress\NonceManager\Nonces\SimpleNonce;
-use Bvsk\WordPress\NonceManager\Nonces\FieldNonce;
-use Bvsk\WordPress\NonceManager\Nonces\UrlNonce;
 use Bvsk\WordPress\NonceManager\Nonces\Factory\SimpleNonceFactory;
 use Bvsk\WordPress\NonceManager\Nonces\Factory\FieldNonceFactory;
 use Bvsk\WordPress\NonceManager\Nonces\Factory\UrlNonceFactory;
@@ -165,13 +162,31 @@ $nonceManager = new NonceManager(
         new FieldNonceFactory(),
         new UrlNonceFactory()
     ),
-    new ExampleVerifier()
+    new FooBarVerifier()
 );
 ```
 
 ## Quality Assurance
 
 This Package provides a baseline of common used QA Code tools which you can run simply by custom composer script commands.
+
+### PHP CodeSniffer
+
+To ensure the quality of the code this package uses the Inpsyde Coding Standards, 
+which are especially created for WordPress Projects. You can also use it for every other projects.
+Provides a good set of coding rules via PHP CodeSniffer CLI Tool.
+
+> PHP 7+ coding standards for Inpsyde WordPress projects.
+
+```shell
+$ composer cs
+```
+
+### Psalm
+
+```shell
+$ composer psalm
+```
 
 ### Tests
 
