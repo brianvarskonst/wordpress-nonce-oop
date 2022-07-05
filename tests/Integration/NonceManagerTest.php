@@ -7,6 +7,7 @@ namespace Bvsk\WordPress\NonceManager\Tests\Integration;
 use Bvsk\WordPress\NonceManager\NonceManager;
 use Bvsk\WordPress\NonceManager\Nonces\Factory\DefaultNonceProperties;
 use Bvsk\WordPress\NonceManager\Nonces\FieldNonce;
+use Bvsk\WordPress\NonceManager\Nonces\Nonce;
 use Bvsk\WordPress\NonceManager\Nonces\SimpleNonce;
 use Bvsk\WordPress\NonceManager\Nonces\UrlNonce;
 use Bvsk\WordPress\NonceManager\Tests\Stubs\FooBarNonceFactory;
@@ -119,9 +120,14 @@ class NonceManagerTest extends UnitTestCase
 
     private function buildTesteeWithStubs(): NonceManager
     {
+        $foobar = 'fooBar';
+
         return new NonceManager(
-            new FooBarNonceFactory(),
-            new FooBarVerifier()
+            new FooBarNonceFactory($foobar),
+            new FooBarVerifier(
+                fn(Nonce $nonce): bool => true,
+                $foobar
+            )
         );
     }
 }

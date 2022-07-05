@@ -35,10 +35,6 @@ class NonceVerifierTest extends UnitTestCase
     {
         $verifier = $this->buildTestee();
 
-        expect('add_filter')->once();
-        expect('apply_filters')->once()->andReturn(DefaultNonceProperties::LIFETIME);
-        expect('wp_create_nonce')->once()->andReturn($token);
-
         expect('wp_verify_nonce')->once()->andReturn(true);
 
         if ($nonce instanceof FieldNonce) {
@@ -58,10 +54,6 @@ class NonceVerifierTest extends UnitTestCase
     public function testFailingNonceVerifier(string $token, Nonce $nonce): void
     {
         $verifier = $this->buildTestee();
-
-        expect('add_filter')->once();
-        expect('apply_filters')->once()->andReturn(DefaultNonceProperties::LIFETIME);
-        expect('wp_create_nonce')->once()->andReturn($token);
 
         expect('wp_verify_nonce')->once()->andReturn(false);
 
@@ -85,6 +77,9 @@ class NonceVerifierTest extends UnitTestCase
     public function defaultDataProvider(): iterable
     {
         $token = 'fooBar';
+
+        expect('add_filter')->times(3);
+        expect('wp_create_nonce')->times(3)->andReturn($token);
 
         yield 'testSimpleNonce' => [
             'token' => $token,
