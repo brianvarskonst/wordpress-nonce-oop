@@ -18,11 +18,14 @@ use function Brain\Monkey\Functions\expect;
 
 class NonceManagerTest extends UnitTestCase
 {
-    public function testCreateStubInstance(): void
+    /**
+     * @dataProvider defaultDataProvider
+     */
+    public function testCreateStubInstance(string $token): void
     {
         $this->assertInstanceOf(
             NonceManager::class,
-            $this->buildTesteeWithStubs()
+            $this->buildTesteeWithStubs($token)
         );
     }
 
@@ -34,11 +37,12 @@ class NonceManagerTest extends UnitTestCase
         );
     }
 
-    public function testCreateSimpleNonceWithNonceManager(): void
+    /**
+     * @dataProvider defaultDataProvider
+     */
+    public function testCreateSimpleNonceWithNonceManager(string $token): void
     {
         $testee = $this->buildTestee();
-
-        $token = 'fooBar';
 
         expect('add_filter')->once();
         expect('apply_filters')->once()->andReturn(DefaultNonceProperties::LIFETIME);
@@ -53,12 +57,12 @@ class NonceManagerTest extends UnitTestCase
         $this->assertSame($nonce->getRequestName(), DefaultNonceProperties::REQUEST_NAME);
     }
 
-    public function testCreateFieldNonceWithNonceManager(): void
+    /**
+     * @dataProvider fieldNonceDataProvider
+     */
+    public function testCreateFieldNonceWithNonceManager(string $token, string $hiddenInput): void
     {
         $testee = $this->buildTestee();
-
-        $token = 'fooBar';
-        $hiddenInput = '<input type="hidden" />';
 
         expect('add_filter')->once();
         expect('apply_filters')->once()->andReturn(DefaultNonceProperties::LIFETIME);
@@ -75,12 +79,12 @@ class NonceManagerTest extends UnitTestCase
         $this->assertSame(DefaultNonceProperties::REQUEST_NAME, $nonce->getRequestName());
     }
 
-    public function testCreateUrlNonceWithNonceManager(): void
+    /**
+     * @dataProvider urlNonceDataProvider
+     */
+    public function testCreateUrlNonceWithNonceManager(string $token, string $url): void
     {
         $testee = $this->buildTestee();
-
-        $token = 'fooBar';
-        $url = 'https://example.com';
 
         expect('add_filter')->once();
         expect('apply_filters')->once()->andReturn(DefaultNonceProperties::LIFETIME);
@@ -96,11 +100,12 @@ class NonceManagerTest extends UnitTestCase
         $this->assertSame($url, $nonce->getUrl());
     }
 
-    public function testVerifyNonceWithNonceManager(): void
+    /**
+     * @dataProvider defaultDataProvider
+     */
+    public function testVerifyNonceWithNonceManager(string $token): void
     {
         $testee = $this->buildTestee();
-
-        $token = 'fooBar';
 
         expect('add_filter')->once();
         expect('apply_filters')->once()->andReturn(DefaultNonceProperties::LIFETIME);
@@ -114,20 +119,41 @@ class NonceManagerTest extends UnitTestCase
         $this->assertTrue($testee->verify($nonce));
     }
 
+    public function defaultDataProvider(): iterable
+    {
+        yield 'test' => [
+            'token' => 'fooBar',
+        ];
+    }
+
+    public function fieldNonceDataProvider(): iterable
+    {
+        yield 'test' => [
+            'token' => 'fooBar',
+            'hiddenInput' => '<input type="hidden" />',
+        ];
+    }
+
+    public function urlNonceDataProvider(): iterable
+    {
+        yield 'test' => [
+            'token' => 'fooBar',
+            'url' => 'https://example.com',
+        ];
+    }
+
     private function buildTestee(): NonceManager
     {
         return NonceManager::createFromDefaults();
     }
 
-    private function buildTesteeWithStubs(): NonceManager
+    private function buildTesteeWithStubs(string $fooBar): NonceManager
     {
-        $foobar = 'fooBar';
-
         return new NonceManager(
-            new FooBarNonceFactory($foobar),
+            new FooBarNonceFactory($fooBar),
             new FooBarVerifier(
                 fn(Nonce $nonce): bool => true,
-                $foobar
+                $fooBar
             )
         );
     }

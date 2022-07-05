@@ -30,7 +30,7 @@ class NonceVerifierTest extends UnitTestCase
     /**
      * @dataProvider defaultDataProvider
      */
-    public function testSuccessfulNonceVerifier(string $token, Nonce $nonce): void
+    public function testSuccessfulNonceVerifier(Nonce $nonce): void
     {
         $verifier = $this->buildTestee();
 
@@ -50,7 +50,7 @@ class NonceVerifierTest extends UnitTestCase
     /**
      * @dataProvider defaultDataProvider
      */
-    public function testFailingNonceVerifier(string $token, Nonce $nonce): void
+    public function testFailingNonceVerifier(Nonce $nonce): void
     {
         $verifier = $this->buildTestee();
 
@@ -75,23 +75,18 @@ class NonceVerifierTest extends UnitTestCase
 
     public function defaultDataProvider(): iterable
     {
-        $token = 'fooBar';
-
         expect('add_filter')->times(3);
-        expect('wp_create_nonce')->times(3)->andReturn($token);
+        expect('wp_create_nonce')->times(3)->andReturn('fooBar');
 
         yield 'testSimpleNonce' => [
-            'token' => $token,
             'nonce' => (new SimpleNonceFactory())->create('simple'),
         ];
 
         yield 'testFieldNonce' => [
-            'token' => $token,
             'nonce' => (new FieldNonceFactory())->create('field', ['referer' => false]),
         ];
 
         yield 'testUrlNonce' => [
-            'token' => $token,
             'nonce' => (new UrlNonceFactory())->create('url', ['url' => 'https://www.example.com']),
         ];
     }
