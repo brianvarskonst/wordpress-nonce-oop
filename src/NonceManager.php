@@ -40,7 +40,7 @@ final class NonceManager
         );
     }
 
-    public function createNonce(string $type, array $data): Nonce
+    public function createNonce(string $type, array $data = []): Nonce
     {
         return $this->nonceFactory->create($type, $data);
     }

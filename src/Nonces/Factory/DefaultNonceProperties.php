@@ -8,5 +8,5 @@ interface DefaultNonceProperties
 
     public const REQUEST_NAME = '_wpnonce';
 
-    public const LIFETIME = (int) DAY_IN_SECONDS;
+    public const LIFETIME = DAY_IN_SECONDS;
 }

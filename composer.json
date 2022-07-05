@@ -39,7 +39,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Bvsk\\WordPress\\NonceManager\\Tests\\": "tests/src"
+            "Bvsk\\WordPress\\NonceManager\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -48,8 +48,10 @@
         "psalm": "@php ./vendor/vimeo/psalm/psalm --no-cache --no-diff --no-progress --output-format=compact",
         "tests": "@php ./vendor/bin/phpunit",
         "tests:no-cov": "@php ./vendor/bin/phpunit --no-coverage",
-        "tests:unit": "@php ./vendor/bin/phpunit --testsuite=PHPUnit",
-        "tests:unit:no-cov": "@php ./vendor/bin/phpunit --testsuite=PHPUnit --no-coverage",
+        "tests:unit": "@php ./vendor/bin/phpunit --testsuite=Unit",
+        "tests:unit:no-cov": "@php ./vendor/bin/phpunit --testsuite=Unit --no-coverage",
+        "tests:integration": "@php ./vendor/bin/phpunit --testsuite=Integration",
+        "tests:integration:no-cov": "@php ./vendor/bin/phpunit --testsuite=Integration --no-coverage",
         "qa": [
             "@cs",
             "@psalm",

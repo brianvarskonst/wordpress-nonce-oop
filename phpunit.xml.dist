@@ -14,7 +14,11 @@
     </coverage>
 
     <testsuites>
-        <testsuite name="PHPUnit">
+        <testsuite name="Integration">
+            <directory>tests/Integration/</directory>
+        </testsuite>
+
+        <testsuite name="Unit">
             <directory>tests/Unit/</directory>
         </testsuite>
     </testsuites>

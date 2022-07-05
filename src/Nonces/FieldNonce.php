@@ -63,6 +63,10 @@ class FieldNonce extends SimpleNonce
 
     public function getField(): string
     {
+        if ($this->field === null) {
+            $this->generate();
+        }
+
         return $this->field;
     }
 }
