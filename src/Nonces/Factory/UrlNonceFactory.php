@@ -25,7 +25,6 @@ class UrlNonceFactory extends SimpleNonceFactory
 
     public function create(string $type, array $data = []): Nonce
     {
-
         return new UrlNonce(
             $data['url'],
             $data['action'] ?? DefaultNonceProperties::ACTION,
