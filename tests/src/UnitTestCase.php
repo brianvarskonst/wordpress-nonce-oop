@@ -6,5 +6,4 @@ namespace Bvsk\WordPress\NonceManager\Tests;
 
 class UnitTestCase extends TestCase
 {
-
 }

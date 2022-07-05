@@ -56,7 +56,7 @@ class FooBarNonce implements Nonce
             'lifetime' => $lifetime,
             'lifetimeManipulated' => $lifetime * 2,
             'requestName' => $fooBar,
-            'token' => $fooBar
+            'token' => $fooBar,
         ];
     }
 

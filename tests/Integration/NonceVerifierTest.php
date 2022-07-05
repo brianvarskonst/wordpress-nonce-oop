@@ -14,12 +14,13 @@ use Bvsk\WordPress\NonceManager\Nonces\UrlNonce;
 use Bvsk\WordPress\NonceManager\Tests\UnitTestCase;
 use Bvsk\WordPress\NonceManager\Verification\NonceVerifier;
 use Bvsk\WordPress\NonceManager\Verification\Verifier;
+
 use function Brain\Monkey\Functions\expect;
+
 use InvalidArgumentException;
 
 class NonceVerifierTest extends UnitTestCase
 {
-
     public function testCreateNonceVerifier(): void
     {
         $this->assertInstanceOf(
@@ -83,17 +84,17 @@ class NonceVerifierTest extends UnitTestCase
 
         yield 'testSimpleNonce' => [
             'token' => $token,
-            'nonce' => (new SimpleNonceFactory())->create('simple')
+            'nonce' => (new SimpleNonceFactory())->create('simple'),
         ];
 
         yield 'testFieldNonce' => [
             'token' => $token,
-            'nonce' => (new FieldNonceFactory())->create('field', ['referer' => false])
+            'nonce' => (new FieldNonceFactory())->create('field', ['referer' => false]),
         ];
 
         yield 'testUrlNonce' => [
             'token' => $token,
-            'nonce' => (new UrlNonceFactory())->create('url', ['url' => 'https://www.example.com'])
+            'nonce' => (new UrlNonceFactory())->create('url', ['url' => 'https://www.example.com']),
         ];
     }
 

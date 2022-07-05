@@ -13,6 +13,7 @@ use Bvsk\WordPress\NonceManager\Nonces\UrlNonce;
 use Bvsk\WordPress\NonceManager\Tests\Stubs\FooBarNonceFactory;
 use Bvsk\WordPress\NonceManager\Tests\Stubs\FooBarVerifier;
 use Bvsk\WordPress\NonceManager\Tests\UnitTestCase;
+
 use function Brain\Monkey\Functions\expect;
 
 class NonceManagerTest extends UnitTestCase

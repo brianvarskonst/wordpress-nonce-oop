@@ -10,7 +10,6 @@ use Bvsk\WordPress\NonceManager\Tests\UnitTestCase;
 
 class NonceTest extends UnitTestCase
 {
-
     public function testCreateStubInstance(): void
     {
         $this->assertInstanceOf(

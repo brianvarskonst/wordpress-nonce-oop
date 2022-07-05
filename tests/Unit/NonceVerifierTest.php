@@ -34,6 +34,7 @@ class NonceVerifierTest extends UnitTestCase
         string $age,
         Nonce $nonce
     ): void {
+
         $verifier = $this->buildtestee($callback, $age);
 
         $this->assertTrue($verifier->verify($nonce));

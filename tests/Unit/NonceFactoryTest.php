@@ -42,11 +42,11 @@ class NonceFactoryTest extends UnitTestCase
     public function defaultDataProvider(): iterable
     {
         yield 'test' => [
-            'type' => 'fooBar'
+            'type' => 'fooBar',
         ];
 
         yield 'test2' => [
-            'type' => 'fizzBuzz'
+            'type' => 'fizzBuzz',
         ];
     }
 
