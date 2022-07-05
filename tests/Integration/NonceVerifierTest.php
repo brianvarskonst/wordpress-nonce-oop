@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Bvsk\WordPress\NonceManager\Tests\Integration;
 
-use Bvsk\WordPress\NonceManager\Nonces\Factory\DefaultNonceProperties;
 use Bvsk\WordPress\NonceManager\Nonces\Factory\FieldNonceFactory;
 use Bvsk\WordPress\NonceManager\Nonces\Factory\SimpleNonceFactory;
 use Bvsk\WordPress\NonceManager\Nonces\Factory\UrlNonceFactory;
@@ -14,10 +13,9 @@ use Bvsk\WordPress\NonceManager\Nonces\UrlNonce;
 use Bvsk\WordPress\NonceManager\Tests\UnitTestCase;
 use Bvsk\WordPress\NonceManager\Verification\NonceVerifier;
 use Bvsk\WordPress\NonceManager\Verification\Verifier;
+use InvalidArgumentException;
 
 use function Brain\Monkey\Functions\expect;
-
-use InvalidArgumentException;
 
 class NonceVerifierTest extends UnitTestCase
 {

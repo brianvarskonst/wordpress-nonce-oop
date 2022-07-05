@@ -15,11 +15,8 @@ class NonceVerifierTest extends UnitTestCase
     /**
      * @dataProvider defaultDataProvider
      */
-    public function testCreateStubInstance(
-        callable $callback,
-        string $age
-    ): void {
-
+    public function testCreateStubInstance(callable $callback, string $age): void
+    {
         $this->assertInstanceOf(
             Verifier::class,
             $this->buildtestee($callback, $age)

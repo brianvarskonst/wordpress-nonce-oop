@@ -13,11 +13,8 @@ class FooBarVerifier implements Verifier
 
     private string $age;
 
-    public function __construct(
-        callable $callback,
-        string $age
-    ) {
-
+    public function __construct(callable $callback, string $age)
+    {
         $this->callback = $callback;
         $this->age = $age;
     }
@@ -34,6 +31,7 @@ class FooBarVerifier implements Verifier
 
     public function renderMessageHasExpired(Nonce $nonce): void
     {
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo $this->age;
     }
 }
