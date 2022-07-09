@@ -2,7 +2,7 @@
     "name": "brianvarskonst/wordpress-nonce",
     "description": "WordPress Nonce in an Object Oriented Way",
     "type": "library",
-    "license": "GPL2",
+    "license": "MIT",
     "keywords": [
         "wordpress",
         "wordpress-nonce",
