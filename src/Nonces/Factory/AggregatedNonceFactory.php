@@ -10,7 +10,7 @@ use InvalidArgumentException;
 final class AggregatedNonceFactory implements NonceFactory
 {
     private readonly array $types;
-    
+
     private readonly array $factories;
 
     public function __construct(NonceFactory ...$factories)

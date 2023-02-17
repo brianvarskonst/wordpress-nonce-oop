@@ -15,11 +15,11 @@ use Bvsk\WordPress\NonceManager\Verification\Verifier;
 
 final class NonceManager
 {
-
     public function __construct(
         private readonly NonceFactory $nonceFactory,
         private readonly Verifier $verifier
-    ) {}
+    ) {
+    }
 
     /**
      * Create a new NonceManager with delivered components

@@ -26,7 +26,6 @@ class SimpleNonceFactory implements NonceFactory
             $data[Config::ACTION->value] ?? Config::ACTION->getDefault(),
             $data[Config::REQUEST_NAME->value] ?? Config::REQUEST_NAME->getDefault(),
             $this->generateLifetime($data[Config::LIFETIME->value] ?? Config::LIFETIME->getDefault())
-
         );
     }
 
