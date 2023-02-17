@@ -9,34 +9,21 @@ use Stringable;
 abstract class AbstractNonce implements Nonce, Stringable
 {
     /**
-     * The name of the action
-     **/
-    protected string $action;
-
-    /**
-     * The name of the request
-     **/
-    protected string $requestName;
-
-    /**
-     * The lifetime of a nonce in seconds
-     **/
-    protected int $lifetime;
-
-    /**
      * cryptographic token
      */
     protected string $token;
 
+    /**
+     * @param string $action The name of the action
+     * @param string $requestName The name of the request
+     * @param int $lifetime The lifetime of a nonce in seconds
+     */
     public function __construct(
-        string $action,
-        string $requestName,
-        int $lifetime = DAY_IN_SECONDS
+        protected string $action,
+        protected string $requestName,
+        protected int $lifetime = DAY_IN_SECONDS
     ) {
 
-        $this->action = $action;
-        $this->requestName = $requestName;
-        $this->lifetime = $lifetime;
         $this->token = wp_create_nonce($action);
     }
 
@@ -71,6 +58,6 @@ abstract class AbstractNonce implements Nonce, Stringable
 
     public function __toString(): string
     {
-        return $this->getToken();
+        return $this->token;
     }
 }

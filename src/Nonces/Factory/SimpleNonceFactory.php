@@ -6,6 +6,7 @@ namespace Bvsk\WordPress\NonceManager\Nonces\Factory;
 
 use Bvsk\WordPress\NonceManager\Nonces\Nonce;
 use Bvsk\WordPress\NonceManager\Nonces\SimpleNonce;
+use Bvsk\WordPress\NonceManager\Nonces\Config\DefaultWordPressNonceConfig as Config;
 
 class SimpleNonceFactory implements NonceFactory
 {
@@ -22,9 +23,10 @@ class SimpleNonceFactory implements NonceFactory
     public function create(string $type, array $data = []): Nonce
     {
         return new SimpleNonce(
-            $data['action'] ?? DefaultNonceProperties::ACTION,
-            $data['requestName'] ?? DefaultNonceProperties::REQUEST_NAME,
-            $this->generateLifetime($data['lifetime'] ?? DefaultNonceProperties::LIFETIME)
+            $data[Config::ACTION->value] ?? Config::ACTION->getDefault(),
+            $data[Config::REQUEST_NAME->value] ?? Config::REQUEST_NAME->getDefault(),
+            $this->generateLifetime($data[Config::LIFETIME->value] ?? Config::LIFETIME->getDefault())
+
         );
     }
 
