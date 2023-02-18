@@ -21,7 +21,7 @@
         "issues": "https://github.com/brianvarskonst/wordpress-nonce/issues"
     },
     "require": {
-        "php": ">=7.4"
+        "php": ">=8.1"
     },
     "require-dev": {
         "inpsyde/php-coding-standards": "^1.0",
@@ -30,7 +30,9 @@
         "phpunit/phpunit": "^9.5",
         "vimeo/psalm": "^4",
         "psalm/plugin-mockery": "^0.9.1",
-        "roots/wordpress": "5.3.*@stable"
+        "roots/wordpress": "5.3.*@stable",
+        "rector/rector": "^0.15.16",
+        "inpsyde/wp-stubs-versions": "dev-latest"
     },
     "autoload": {
         "psr-4": {
@@ -56,16 +58,27 @@
             "@cs",
             "@psalm",
             "@tests"
-        ]
+        ],
+        "rector:dry": "@php ./vendor/bin/rector process src --dry-run",
+        "rector:run": "@php ./vendor/bin/rector process src"
     },
     "config": {
         "optimize-autoloader": true,
         "sort-packages": true,
         "platform": {
-            "php": "7.4"
+            "php": "8.1"
         }
     },
     "extra": {
         "wordpress-install-dir": "vendor/wordpress/wordpress"
-    }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://raw.githubusercontent.com/inpsyde/wp-stubs/main",
+            "only": [
+                "inpsyde/wp-stubs-versions"
+            ]
+        }
+    ]
 }

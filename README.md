@@ -37,7 +37,7 @@ which will expire after a certain time - so this needs not to be that big and co
 Maybe this will change in the future for the next major version in some years. 
 
 ## Requirements
-- PHP 7.4
+- PHP 8.1
 - Composer 1 | 2
 
 ## Features
@@ -222,6 +222,8 @@ $ composer tests:integration
 
 ### Testing Plugin
 
+#### Note: Outdated ATM
+
 If you want to see how this works in the wild, you can have a look at 
 [WordPress Nonce Manager Test Plugin](https://github.com/brianvarskonst/wordpress-nonce-manager-test-plugin) Repository.
 
@@ -229,11 +231,12 @@ If you want to see how this works in the wild, you can have a look at
 * [WordPress Nonces Documentation](https://codex.wordpress.org/WordPress_Nonces)
 * [PHPUnit Documentation](https://phpunit.de)
 * [Brain-WP / BrainMonkey](https://github.com/Brain-WP/BrainMonkey)
-* [Inpsyde Coding Standards](https://github.com/inpsyde/php-coding-standards)
+* [Inpsyde - Coding Standards](https://github.com/inpsyde/php-coding-standards)
+* [Inpsyde - Psalm WP Stubs](https://github.com/inpsyde/wp-stubs)
 
 ## License
 
-Copyright (c) 2022, Brianvarskonst under [MIT](LICENSE) License
+Copyright (c) 2023, Brianvarskonst under [MIT](LICENSE) License
 
 ## Contributing
 

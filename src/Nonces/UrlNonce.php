@@ -6,19 +6,15 @@ namespace Bvsk\WordPress\NonceManager\Nonces;
 
 class UrlNonce extends SimpleNonce
 {
-    private string $url;
-
     /**
      * @param string $url The URL to append the Nonce.
      */
     public function __construct(
-        string $url,
+        private string $url,
         string $action,
         string $requestName,
         int $lifetime = DAY_IN_SECONDS
     ) {
-
-        $this->url = $url;
 
         parent::__construct($action, $requestName, $lifetime);
     }

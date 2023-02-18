@@ -7,22 +7,19 @@ namespace Bvsk\WordPress\NonceManager\Nonces\Factory;
 use Bvsk\WordPress\NonceManager\Nonces\Nonce;
 use InvalidArgumentException;
 
-class AggregatedNonceFactory implements NonceFactory
+final class AggregatedNonceFactory implements NonceFactory
 {
-    private array $types;
+    private readonly array $types;
 
-    /**
-     * @var NonceFactory[]
-     */
-    private array $childFactories;
+    private readonly array $factories;
 
-    public function __construct(NonceFactory ...$childFactories)
+    public function __construct(NonceFactory ...$factories)
     {
-        $this->childFactories = $childFactories;
+        $this->factories = $factories;
 
         $this->types = array_map(
             static fn(NonceFactory $factory): string => $factory->getSupportedType(),
-            $childFactories
+            $factories
         );
     }
 
@@ -41,7 +38,7 @@ class AggregatedNonceFactory implements NonceFactory
      */
     public function create(string $type, array $data = []): Nonce
     {
-        foreach ($this->childFactories as $factory) {
+        foreach ($this->factories as $factory) {
             if ($factory->accepts($type, $data)) {
                 return $factory->create($type, $data);
             }

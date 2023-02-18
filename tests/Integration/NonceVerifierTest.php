@@ -60,14 +60,14 @@ class NonceVerifierTest extends UnitTestCase
             expect('check_admin_referer')->once()->andReturn(false);
 
             $this->expectException(InvalidArgumentException::class);
-            $this->expectDeprecationMessage('Invalid UrlNonce was provided.');
+            $this->expectExceptionMessage('Invalid UrlNonce was provided.');
         }
 
         if ($nonce instanceof FieldNonce) {
             expect('check_ajax_referer')->once()->andReturn(false);
 
             $this->expectException(InvalidArgumentException::class);
-            $this->expectDeprecationMessage('Invalid FieldNonce was provided.');
+            $this->expectExceptionMessage('Invalid FieldNonce was provided.');
         }
 
         $this->assertFalse($verifier->verify($nonce));

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Bvsk\WordPress\NonceManager\Tests\Integration;
 
 use Bvsk\WordPress\NonceManager\NonceManager;
-use Bvsk\WordPress\NonceManager\Nonces\Factory\DefaultNonceProperties;
 use Bvsk\WordPress\NonceManager\Nonces\FieldNonce;
 use Bvsk\WordPress\NonceManager\Nonces\Nonce;
 use Bvsk\WordPress\NonceManager\Nonces\SimpleNonce;
@@ -13,6 +12,7 @@ use Bvsk\WordPress\NonceManager\Nonces\UrlNonce;
 use Bvsk\WordPress\NonceManager\Tests\Stubs\FooBarNonceFactory;
 use Bvsk\WordPress\NonceManager\Tests\Stubs\FooBarVerifier;
 use Bvsk\WordPress\NonceManager\Tests\UnitTestCase;
+use Bvsk\WordPress\NonceManager\Nonces\Config\DefaultWordPressNonceConfig as Config;
 
 use function Brain\Monkey\Functions\expect;
 
@@ -45,16 +45,16 @@ class NonceManagerTest extends UnitTestCase
         $testee = $this->buildTestee();
 
         expect('add_filter')->once();
-        expect('apply_filters')->once()->andReturn(DefaultNonceProperties::LIFETIME);
+        expect('apply_filters')->once()->andReturn(Config::LIFETIME->getDefault());
         expect('wp_create_nonce')->once()->andReturn($token);
 
         $nonce = $testee->createNonce(SimpleNonce::class);
         $this->assertInstanceOf(SimpleNonce::class, $nonce);
 
         $this->assertSame($nonce->getToken(), $token);
-        $this->assertSame($nonce->getLifetime(), DefaultNonceProperties::LIFETIME);
-        $this->assertSame($nonce->getAction(), DefaultNonceProperties::ACTION);
-        $this->assertSame($nonce->getRequestName(), DefaultNonceProperties::REQUEST_NAME);
+        $this->assertSame($nonce->getLifetime(), Config::LIFETIME->getDefault());
+        $this->assertSame($nonce->getAction(), Config::ACTION->getDefault());
+        $this->assertSame($nonce->getRequestName(), Config::REQUEST_NAME->getDefault());
     }
 
     /**
@@ -65,7 +65,7 @@ class NonceManagerTest extends UnitTestCase
         $testee = $this->buildTestee();
 
         expect('add_filter')->once();
-        expect('apply_filters')->once()->andReturn(DefaultNonceProperties::LIFETIME);
+        expect('apply_filters')->once()->andReturn(Config::LIFETIME->getDefault());
         expect('wp_create_nonce')->once()->andReturn($token);
         expect('wp_nonce_field')->once()->andReturn($hiddenInput);
 
@@ -74,9 +74,9 @@ class NonceManagerTest extends UnitTestCase
 
         $this->assertSame($hiddenInput, $nonce->getField());
         $this->assertSame($token, $nonce->getToken());
-        $this->assertSame(DefaultNonceProperties::LIFETIME, $nonce->getLifetime());
-        $this->assertSame(DefaultNonceProperties::ACTION, $nonce->getAction());
-        $this->assertSame(DefaultNonceProperties::REQUEST_NAME, $nonce->getRequestName());
+        $this->assertSame(Config::LIFETIME->getDefault(), $nonce->getLifetime());
+        $this->assertSame(Config::ACTION->getDefault(), $nonce->getAction());
+        $this->assertSame(Config::REQUEST_NAME->getDefault(), $nonce->getRequestName());
     }
 
     /**
@@ -87,16 +87,16 @@ class NonceManagerTest extends UnitTestCase
         $testee = $this->buildTestee();
 
         expect('add_filter')->once();
-        expect('apply_filters')->once()->andReturn(DefaultNonceProperties::LIFETIME);
+        expect('apply_filters')->once()->andReturn(Config::LIFETIME->getDefault());
         expect('wp_create_nonce')->once()->andReturn($token);
 
         $nonce = $testee->createNonce(UrlNonce::class, ['url' => $url]);
         $this->assertInstanceOf(UrlNonce::class, $nonce);
 
         $this->assertSame($token, $nonce->getToken());
-        $this->assertSame(DefaultNonceProperties::LIFETIME, $nonce->getLifetime());
-        $this->assertSame(DefaultNonceProperties::ACTION, $nonce->getAction());
-        $this->assertSame(DefaultNonceProperties::REQUEST_NAME, $nonce->getRequestName());
+        $this->assertSame(Config::LIFETIME->getDefault(), $nonce->getLifetime());
+        $this->assertSame(Config::ACTION->getDefault(), $nonce->getAction());
+        $this->assertSame(Config::REQUEST_NAME->getDefault(), $nonce->getRequestName());
         $this->assertSame($url, $nonce->getUrl());
     }
 
@@ -108,7 +108,7 @@ class NonceManagerTest extends UnitTestCase
         $testee = $this->buildTestee();
 
         expect('add_filter')->once();
-        expect('apply_filters')->once()->andReturn(DefaultNonceProperties::LIFETIME);
+        expect('apply_filters')->once()->andReturn(Config::LIFETIME->getDefault());
         expect('wp_create_nonce')->once()->andReturn($token);
 
         $nonce = $testee->createNonce(SimpleNonce::class);

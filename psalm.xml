@@ -5,6 +5,10 @@
     xmlns="https://getpsalm.org/schema/config"
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
 >
+    <stubs>
+        <file name="vendor/inpsyde/wp-stubs-versions/latest.php"/>
+    </stubs>
+
     <projectFiles>
         <directory name="src"/>
 
