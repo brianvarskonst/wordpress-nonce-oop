@@ -13,12 +13,6 @@ class NonceVerifier implements Verifier
 {
     public function verify(Nonce $nonce): bool
     {
-        if ($nonce->getToken() === null) {
-            throw new InvalidArgumentException(
-                'Invalid Nonce with an empty token provided.'
-            );
-        }
-
         if ($nonce instanceof UrlNonce && !$this->isAdminReferer($nonce)) {
             throw new InvalidArgumentException(
                 'Invalid UrlNonce was provided.'

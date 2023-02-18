@@ -45,7 +45,7 @@ class FieldNonce extends SimpleNonce
     public function render(): void
     {
         echo wp_kses(
-            $this->field,
+            $this->getField(),
             [
                 'input' => [
                     'type' => [],
@@ -57,6 +57,9 @@ class FieldNonce extends SimpleNonce
         );
     }
 
+    /**
+     * @psalm-suppress InvalidNullableReturnType, NullableReturnStatement
+     */
     public function getField(): string
     {
         if ($this->field === null) {
