@@ -10,14 +10,15 @@ use ValueError;
 
 enum DefaultWordPressNonceConfig: string
 {
-case ACTION = 'action';
-case REQUEST_NAME = 'requestName';
+    case ACTION = 'action';
+    
+    case REQUEST_NAME = 'requestName';
 
-case LIFETIME = 'lifetime';
+    case LIFETIME = 'lifetime';
 
-case URL = 'url';
+    case URL = 'url';
 
-case REFERER = 'referer';
+    case REFERER = 'referer';
 
     /**
      * @throws ValueError
@@ -28,7 +29,7 @@ case REFERER = 'referer';
             self::ACTION => '-1',
             self::REQUEST_NAME => '_wpnonce',
             self::LIFETIME => DAY_IN_SECONDS,
-            self::URL, self::REFERER => throw new ValueError('No default value are existing.'),
+            self::URL, self::REFERER => throw new ValueError('No default value are existing for url and referer.'),
         };
     }
-    }
+}
